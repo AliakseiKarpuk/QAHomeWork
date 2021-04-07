@@ -29,12 +29,5 @@ public class LoginSteps extends BaseStep {
 
         return new LoginPage(browsersService, false);
     }
-    public AddProjectPage loginWithIncorrectCredential(String email, String psw) {
-        LoginPage loginPage = new LoginPage(browsersService, true);
-        loginPage.getEmailInput().sendKeys(email);
-        loginPage.getPasswordInput().sendKeys(psw);
-        loginPage.getLogInButton().click();
 
-        return new AddProjectPage(browsersService, true);
-    }
 }

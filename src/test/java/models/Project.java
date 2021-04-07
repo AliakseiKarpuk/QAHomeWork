@@ -7,8 +7,7 @@ public class Project {
     private String announcement;
     private boolean isShowAnnouncement;
     private ProjectType type;
-    private boolean showAnnouncement;
-    private boolean isCompleted;
+
 
     public String getName() {
         return name;
@@ -34,13 +33,6 @@ public class Project {
         isShowAnnouncement = showAnnouncement;
     }
 
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
-    }
 
     public ProjectType getType() {
         return type;

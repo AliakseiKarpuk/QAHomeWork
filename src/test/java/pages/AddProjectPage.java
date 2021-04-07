@@ -2,6 +2,7 @@ package pages;
 
 import baseEntities.BasePage;
 import core.BrowsersService;
+import enums.ProjectType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -15,9 +16,7 @@ public class AddProjectPage extends BasePage {
     protected static final By singleSuiteModeBaselineBy = By.id("suite_mode_single_baseline");
     protected static final By multipleSuiteModeBy = By.id("suite_mode_multi");
     protected static final By addProjectButtonBy  = By.id("accept");
-    protected static final By assertForSingleSuiteMode = By.xpath("//*[text()='AKarpuk_01']");
-    protected static final By assertForSingleSuiteModeBaseline = By.xpath("//*[text()='AKarpuk_02']");
-    protected static final By assertForMultipleSuiteMode = By.xpath("//*[text()='AKarpuk_03']");
+    protected static final By successTextBy = By.cssSelector(".message.message-success");
 
     public AddProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -58,13 +57,5 @@ public class AddProjectPage extends BasePage {
     public WebElement getAddProjectButton(){
         return driver.findElement(addProjectButtonBy);
     }
-    public String getAssertForSingleSuitemode(){
-        return driver.findElement(assertForSingleSuiteMode).getText();
-    }
-    public String getAssertForSingleSuitemodeBaseline(){
-        return driver.findElement(assertForSingleSuiteModeBaseline).getText();
-    }
-    public String getAssertForMultipleSuitemode(){
-        return driver.findElement(assertForMultipleSuiteMode).getText();
-    }
+    public String getSuccessText(){ return driver.findElement(successTextBy).getText();}
 }
