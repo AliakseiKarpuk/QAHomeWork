@@ -5,14 +5,17 @@ import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class ProjectPage extends BasePage {
 
     private static String END_POINT = "index.php?/admin/projects/overview";
-    protected static final By successTextBy = By.cssSelector(".message.message-success");
-    protected static final By projectSingleTestSuiteNameBy = By.xpath("//a[text()='AKarpuk_01']");
-    protected static final By projectSingleWithBaselineNameBy = By.xpath("//a[text()='AKarpuk_02']");
-    protected static final By projectMultipleNameBy = By.xpath("//a[text()='AKarpuk_03']");
+
     protected static final By addProjectButtonBy = By.className("content-header-title page_title");
+//    protected static final By allProjects = By.xpath("//tbody/child::tr");
+    protected static final By allProjects = By.cssSelector("tbody>tr>td>a");
+    protected static final By logoIsfibdBy = By.id("top-logo");
+    protected static final By getSuccessTextBy = By.cssSelector(".message.message-success");
 
     public ProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -27,16 +30,23 @@ public class ProjectPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         try{
-            return driver.findElement(addProjectButtonBy).isDisplayed();
+            return logoIsFind().isDisplayed();
         }catch (Exception ex){
 
             return false;
         }
     }
 
-    public String successText(){ return driver.findElement(successTextBy).getText();}
-    public WebElement singleTestSuiteName(){return driver.findElement(projectSingleTestSuiteNameBy);}
-    public WebElement singleWithBaselineName(){return driver.findElement(projectSingleWithBaselineNameBy);}
-    public WebElement multipleName(){ return driver.findElement(projectMultipleNameBy);}
+    public WebElement logoIsFind(){ return driver.findElement(logoIsfibdBy);}
+    public String getSuccessText(){ return driver.findElement(getSuccessTextBy).getText();}
 
+    public boolean checkProjectList(String projectName){
+        List<WebElement> list = driver.findElements(allProjects);
+        for (WebElement option : list){
+            if(option.getText().equals(projectName)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

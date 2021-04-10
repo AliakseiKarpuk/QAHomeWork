@@ -11,6 +11,9 @@ public class LoginPage extends BasePage {
     protected static final By passwordInputBy = By.id("password");
     protected static final By logInButtonBy = By.id("button_primary");
     protected static final By errorLabelBy = By.className("error-text");
+    protected static final By emailRequiredBy = By.xpath("//div[text()='Email/Login is required.']");
+    protected static final By pswRequiredBy = By.xpath("//div[text()='Password is required.']");
+
 
     // Инициализация класса
     public LoginPage(BrowsersService browsersService, boolean openPageByUrl) {
@@ -47,4 +50,8 @@ public class LoginPage extends BasePage {
     public String getErrorText() {
         return driver.findElement(errorLabelBy).getText();
     }
+
+    public WebElement getEmailRequired(){ return driver.findElement(emailRequiredBy);}
+
+    public WebElement getPswRequired(){ return driver.findElement(pswRequiredBy);}
 }

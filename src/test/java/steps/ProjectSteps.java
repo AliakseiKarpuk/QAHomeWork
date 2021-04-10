@@ -4,8 +4,8 @@ import baseEntities.BaseStep;
 import core.BrowsersService;
 import enums.ProjectType;
 import models.Project;
-import org.openqa.selenium.WebElement;
 import pages.AddProjectPage;
+import pages.ProjectPage;
 
 public class ProjectSteps extends BaseStep {
 
@@ -13,7 +13,7 @@ public class ProjectSteps extends BaseStep {
         super(browsersService);
     }
 
-    public AddProjectPage AddProject(String name, ProjectType projectType) {
+    public ProjectPage AddProject(String name, ProjectType projectType) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
@@ -31,7 +31,7 @@ public class ProjectSteps extends BaseStep {
         }
         addProjectPage.getAddProjectButton().click();
 
-        return addProjectPage;
+        return new ProjectPage(browsersService,false);
     }
 
     public void UpdateProject() {

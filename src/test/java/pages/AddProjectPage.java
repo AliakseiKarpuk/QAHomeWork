@@ -16,7 +16,7 @@ public class AddProjectPage extends BasePage {
     protected static final By singleSuiteModeBaselineBy = By.id("suite_mode_single_baseline");
     protected static final By multipleSuiteModeBy = By.id("suite_mode_multi");
     protected static final By addProjectButtonBy  = By.id("accept");
-    protected static final By successTextBy = By.cssSelector(".message.message-success");
+
 
     public AddProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -57,5 +57,5 @@ public class AddProjectPage extends BasePage {
     public WebElement getAddProjectButton(){
         return driver.findElement(addProjectButtonBy);
     }
-    public String getSuccessText(){ return driver.findElement(successTextBy).getText();}
+
 }
