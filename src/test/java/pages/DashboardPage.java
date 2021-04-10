@@ -9,6 +9,7 @@ public class DashboardPage extends BasePage {
     private static String END_POINT = "index.php?/dashboard";
 
     protected static final By sidebarProjectsAddButtonBy = By.id("sidebar-projects-add");
+    protected static final String projectWithTestCases = "//a[text()='remove']";
 
     public DashboardPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -30,4 +31,7 @@ public class DashboardPage extends BasePage {
     }
 
     public WebElement getSidebarProjectsAddButton() { return driver.findElement(sidebarProjectsAddButtonBy); }
+    public WebElement getProjectWithTestCases(String projectName){
+        return driver.findElement(By.xpath(projectWithTestCases.replace("remove", projectName)));
+    }
 }

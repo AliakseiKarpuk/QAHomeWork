@@ -18,13 +18,23 @@ public abstract class BaseTest {
         readProperties = new ReadProperties();
     }
 
+//    @BeforeClass
+//    public void setupClass(){
+//        browsersService = new BrowsersService();
+//        readProperties = new ReadProperties();
+//        browsersService.getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
+//        browsersService.getDriver().get(readProperties.getURL());
+//        waits = browsersService.getWaits();
+//
+//    }
+
     @BeforeMethod
     public void setupMethod() {
         browsersService = new BrowsersService();
         readProperties = new ReadProperties();
         browsersService.getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
         browsersService.getDriver().get(readProperties.getURL());
-        browsersService.getDriver().get(readProperties.getURL());
+
         waits = browsersService.getWaits();
 
     }
@@ -34,4 +44,9 @@ public abstract class BaseTest {
         browsersService.getDriver().quit();
         browsersService = null;
     }
+// @AfterClass
+//    public void tearDownClass() {
+//        browsersService.getDriver().quit();
+//        browsersService = null;
+//    }
 }

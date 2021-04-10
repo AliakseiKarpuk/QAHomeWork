@@ -4,36 +4,40 @@ import baseEntities.BaseTest;
 import enums.ProjectType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AddProjectPage;
 import pages.ProjectPage;
 import steps.ProjectSteps;
+import testData.AddProjectProvider;
 
 public class AddProjectTest extends BaseTest {
-    @Test
-    public void AddProjectWithSingleSuiteMode(){
+
+
+    @Test(dataProvider = "Add Project", dataProviderClass = AddProjectProvider.class)
+    public void AddProject(String projectName, ProjectType projectType){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage projectPage = projectSteps.AddProject("AKarpuk_01", ProjectType.SINGLE_FOR_ALL_CASES);
+        ProjectPage projectPage = projectSteps.AddProject(projectName, projectType);
 
         Assert.assertEquals(projectPage.getSuccessText(),"Successfully added the new project.");
-        Assert.assertTrue(projectPage.checkProjectList("AKarpuk_01"));
+        Assert.assertTrue(projectPage.checkProjectList(projectName));
     }
-    @Test
-    public void AddProjectWithSingleBaseLine(){
+
+    @Test(dependsOnMethods = "AddProject", dataProvider = "Update Project", dataProviderClass = AddProjectProvider.class)
+    public void UpdateProject(String projectName, ProjectType projectType, String newProjectName){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage projectPage = projectSteps.AddProject("AKarpuk_02", ProjectType.SINGLE_WITH_BASELINE);
+        ProjectPage editProjectPage = projectSteps.UpdateProject(projectName,newProjectName,"54321",projectType);
 
-        Assert.assertEquals(projectPage.getSuccessText(),"Successfully added the new project.");
-        Assert.assertTrue(projectPage.checkProjectList("AKarpuk_02"));
+        Assert.assertEquals(editProjectPage.getSuccessText(),"Successfully updated the project.");
+        Assert.assertTrue(editProjectPage.checkProjectList(newProjectName));
+
     }
-    @Test
-    public void AddProjectWithMultipleMode(){
 
+    @Test(dependsOnMethods = "UpdateProject", dataProvider = "Delete Project", dataProviderClass = AddProjectProvider.class)
+    public void DeleteProject(String projectName){
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage projectPage = projectSteps.AddProject("AKarpuk_03", ProjectType.MULTIPLE);
+        ProjectPage deleteProject = projectSteps.DeleteProject(projectName);
 
-        Assert.assertEquals(projectPage.getSuccessText(),"Successfully added the new project.");
-        Assert.assertTrue(projectPage.checkProjectList("AKarpuk_03"));
+        Assert.assertEquals(deleteProject.getSuccessText(),"Successfully deleted the project.");
+        Assert.assertEquals(deleteProject.checkProjectList(projectName),false);
     }
 }

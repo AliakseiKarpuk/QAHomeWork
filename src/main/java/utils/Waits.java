@@ -23,7 +23,7 @@ public class Waits {
     }
 
     public WebElement waitForVisibility(By by){
-      return  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sidebar-projects-add")));
+      return  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='first test case']/following::td[@class='action']")));
     }
 
 }
