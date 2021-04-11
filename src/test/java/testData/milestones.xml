@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<milestones>
+    <milestone>
+        <name>Version 2.0</name>
+        <projectId>96</projectId>
+        <dueOn>1394596385</dueOn>
+        <isCompleted>false</isCompleted>
+        <isStarted>true</isStarted>
+        <description>One more description</description>
+    </milestone>
+</milestones>

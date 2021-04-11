@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "d505ecda-05ab-43fe-9009-d31d42f3ab94",
+		"name": "AQA04onl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Project",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://aqa04onl01.testrail.io/index.php?/api/v2/get_project/79",
+					"protocol": "https",
+					"host": [
+						"aqa04onl01",
+						"testrail",
+						"io"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/get_project/79",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Projects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://aqa04onl01.testrail.io/index.php?/api/v2/get_projects/79",
+					"protocol": "https",
+					"host": [
+						"aqa04onl01",
+						"testrail",
+						"io"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/get_projects/79",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"AKarpuk_test\",\r\n\t\"announcement\": \"This is the description for the project\",\r\n\t\"show_announcement\": true,\r\n    \"suite_mode\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://aqa04onl01.testrail.io/index.php?/api/v2/add_project",
+					"protocol": "https",
+					"host": [
+						"aqa04onl01",
+						"testrail",
+						"io"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/add_project",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"AKapruk_rename\",\r\n    \"announcement\" : \"new announcemet\",\r\n    \"show_annoucement\" : true,\r\n\t\"is_completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/update_project/96",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/update_project/96",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 96\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/delete_project/96",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/delete_project/96",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Milestone",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"completed_on\": 1389968184,\r\n\t\"description\": \"...\",\r\n\t\"due_on\": 1391968184,\r\n\t\"id\": 1,\r\n\t\"is_completed\": true,\r\n\t\"name\": \"Release 1.5\",\r\n\t\"project_id\": 96\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/get_milestone/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/get_milestone/1",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Milestones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n     \"project_id\": 96\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/get_milestones/96",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/get_milestones/96",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Milestone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"v 2.0\",\r\n\t\"due_on\": 1394596385,\r\n    \"description\" : \"One description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/add_milestone/96",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/add_milestone/96",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Milestone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"is_completed\": false,\r\n    \"is_started\" : true,\r\n    \"description\" : \"add description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/update_milestone/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/update_milestone/1",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Milestone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/index.php?/api/v2/delete_milestone/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "/api/v2/delete_milestone/2",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "atrostyanko+0401@gmail.com",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "QqtRK9elseEfAk6ilYcJ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
