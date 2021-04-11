@@ -5,6 +5,7 @@ import core.BrowsersService;
 import pages.AddTestCasesPage;
 import pages.DashboardPage;
 import pages.OpenProjectPage;
+import pages.dialogs.DeleteConfirm;
 
 public class AddTestCasesStep extends BaseStep {
 
@@ -24,30 +25,47 @@ public class AddTestCasesStep extends BaseStep {
         addTestCasesPage.getPreconditions().sendKeys(preconditionsText);
         addTestCasesPage.getSteps().sendKeys(stepText);
         addTestCasesPage.getExpectedResult().sendKeys(expectedResultText);
-        addTestCasesPage.getAddTestCaseButton().click();
+        addTestCasesPage.getAcceptCaseButton().click();
         openProjectPage.getAllTestCasesButton().click();
 
         return new OpenProjectPage(browsersService,false);
 
     }
 
-//    public OpenProjectPage updateTestCase(String projectName, String testCaseName, String newTestCaseName, String preconditionsText, String stepText, String expectedResultText){
-//        LoginSteps loginSteps = new LoginSteps(browsersService);
-//        DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-//        dashboardPage.getProjectWithTestCases(projectName).click();
-//        OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
-//        openProjectPage.getAllTestCasesButton().click();
-//        openProjectPage.getOpenTestCaseButton(testCaseName).click();
-//        openProjectPage.getEditButton();
-//        AddTestCasesPage addTestCasesPage = new AddTestCasesPage(browsersService,false);
-//        addTestCasesPage.getTitleInput().sendKeys(newTestCaseName);
-//        addTestCasesPage.getPreconditions().sendKeys(preconditionsText);
-//        addTestCasesPage.getSteps().sendKeys(stepText);
-//        addTestCasesPage.getExpectedResult().sendKeys(expectedResultText);
-//        addTestCasesPage.getAddTestCaseButton().click();
-//        openProjectPage.getAllTestCasesButton().click();
-//
-//        return new OpenProjectPage(browsersService, false);
-//
-//    }
+    public OpenProjectPage updateTestCase(String projectName, String testCaseName, String newTestCaseName, String preconditionsText, String stepText, String expectedResultText) {
+
+        LoginSteps loginSteps = new LoginSteps(browsersService);
+        DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
+        dashboardPage.getProjectWithTestCases(projectName).click();
+        OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
+        openProjectPage.getAllTestCasesButton().click();
+        openProjectPage.getTestCase(testCaseName).click();
+        openProjectPage.getEditButton().click();
+        AddTestCasesPage updateTestCase = new AddTestCasesPage(browsersService);
+        updateTestCase.getTitleInput().clear();
+        updateTestCase.getTitleInput().sendKeys(newTestCaseName);
+        updateTestCase.getPreconditions().sendKeys(preconditionsText);
+        updateTestCase.getSteps().sendKeys(stepText);
+        updateTestCase.getExpectedResult().sendKeys(expectedResultText);
+        updateTestCase.getAcceptCaseButton().click();
+
+        return new OpenProjectPage(browsersService, false);
+    }
+
+    public OpenProjectPage deleteTestCase(String projectName, String testCaseName){
+
+        LoginSteps loginSteps = new LoginSteps(browsersService);
+        DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
+        dashboardPage.getProjectWithTestCases(projectName).click();
+        OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
+        openProjectPage.getAllTestCasesButton().click();
+        openProjectPage.getTestCase(testCaseName).click();
+        openProjectPage.getEditButton().click();
+        AddTestCasesPage deleteTestCase = new AddTestCasesPage(browsersService);
+        deleteTestCase.getDeleteTestCaseButton().click();
+        DeleteConfirm deleteConfirm = new DeleteConfirm(browsersService);
+        deleteConfirm.markAsDeleteButton().click();
+
+        return new OpenProjectPage(browsersService,false);
+    }
 }

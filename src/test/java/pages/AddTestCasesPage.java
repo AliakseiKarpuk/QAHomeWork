@@ -14,6 +14,7 @@ public class AddTestCasesPage extends BasePage {
     protected static final By stepsBy = By.cssSelector("#custom_steps.form-control");
     protected static final By expectedResult = By.cssSelector("#custom_expected.form-control");
     protected static final By addTestCaseButtonBy = By.id("accept");
+    protected static final By deleteTestCaseButtonBy = By.xpath("//*[@class='button button-negative button-delete']/parent::a[@href]");
 
     public AddTestCasesPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -30,13 +31,20 @@ public AddTestCasesPage(BrowsersService browsersService) {
     @Override
     public boolean isPageOpened() {
         return getTitleInput().isDisplayed();
+
     }
 
-    public WebElement getTitleInput(){ return driver.findElement(titleBy);}
+    public WebElement getTitleInput(){
+        return browsersService.getWaits().waitForVisibility(titleBy);}
     public WebElement getType(){ return driver.findElement(typeBy);}
     public WebElement getPriority(){ return driver.findElement(priorityBy);}
     public WebElement getPreconditions(){ return driver.findElement(preconditionsBy);}
     public WebElement getSteps(){ return driver.findElement(stepsBy);}
     public WebElement getExpectedResult(){ return driver.findElement(expectedResult);}
-    public WebElement getAddTestCaseButton(){ return driver.findElement(addTestCaseButtonBy);}
+    public WebElement getAcceptCaseButton(){
+        return browsersService.getWaits().waitForVisibility(addTestCaseButtonBy);
+    }
+    public WebElement getDeleteTestCaseButton(){
+        return browsersService.getWaits().waitForVisibility(deleteTestCaseButtonBy);
+    }
 }

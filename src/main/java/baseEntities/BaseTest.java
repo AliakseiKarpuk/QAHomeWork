@@ -34,7 +34,6 @@ public abstract class BaseTest {
         readProperties = new ReadProperties();
         browsersService.getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
         browsersService.getDriver().get(readProperties.getURL());
-
         waits = browsersService.getWaits();
 
     }

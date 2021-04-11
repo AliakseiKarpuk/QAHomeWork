@@ -18,7 +18,19 @@ public class AddTestCaseProvider {
     @DataProvider(name = "Update Test Case")
     public static Object[][] updateData(){
         return new Object[][]{
-                {"AKarpuk_08", "first test case","UPDATED FIRST TEST CASE ", "updated some precondition text", "updated some steps text", "updated expected result some text"},
+                {"AKarpuk_08", "first test case","UPDATED FIRST CASE", "updated some precondition text", "updated some steps text", "updated expected result some text"},
+                {"AKarpuk_08", "second test case","UPDATED SECOND CASE", "updated some precondition text", "updated some steps text", "updated expected result some text"},
+                {"AKarpuk_08", "third test case","UPDATED THIRD CASE", "updated some precondition text", "updated some steps text", "updated expected result some text"},
+                {"AKarpuk_08", "fourst test case","UPDATED FOURST CASE", "updated some precondition text", "updated some steps text", "updated expected result some text"}
+        };
+    }
+    @DataProvider(name = "Delete Test Case")
+    public static Object[][] deleteData() {
+        return new Object[][]{
+                {"AKarpuk_08", "UPDATED FIRST CASE"},
+                {"AKarpuk_08", "UPDATED SECOND CASE"},
+                {"AKarpuk_08", "UPDATED THIRD CASE"},
+                {"AKarpuk_08", "UPDATED FOURST CASE"}
         };
     }
 }
