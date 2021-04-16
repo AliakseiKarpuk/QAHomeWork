@@ -4,6 +4,7 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import wrappers.Table;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class ProjectPage extends BasePage {
     protected static final By logoIsfibdBy = By.id("top-logo");
     protected static final By getSuccessTextBy = By.cssSelector(".message.message-success");
     protected static final String deleteProjectButtonBy ="//a[text()='remove']/following::div[@class='icon-small-delete']";
+    protected static final By tableBy = By.className("grid");
 
 
     public ProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
@@ -40,9 +42,8 @@ public class ProjectPage extends BasePage {
 
     public WebElement logoIsFind(){ return driver.findElement(logoIsfibdBy);}
     public String getSuccessText(){ return driver.findElement(getSuccessTextBy).getText();}
-    public WebElement getDeleteProjectButton(String projectName){
-        return driver.findElement(By.xpath(deleteProjectButtonBy.replace("remove", projectName)));
-    }
+    public WebElement getDeleteProjectButton(String projectName){ return driver.findElement(By.xpath(deleteProjectButtonBy.replace("remove", projectName))); }
+    public Table projectTable = new Table(driver, tableBy);
 
     public boolean checkProjectList(String projectName){
         List<WebElement> list = driver.findElements(allProjects);

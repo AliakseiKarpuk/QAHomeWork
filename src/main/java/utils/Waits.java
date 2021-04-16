@@ -26,6 +26,8 @@ public class Waits {
       return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-
+    public WebElement waitForVisibility(WebElement webElement){
+      return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
 
 }
