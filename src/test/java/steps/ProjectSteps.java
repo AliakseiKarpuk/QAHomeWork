@@ -36,7 +36,7 @@ public class ProjectSteps extends BaseStep {
         return new ProjectPage(browsersService,false);
     }
 
-    public ProjectPage UpdateProject(String projectName, String newProjectName, String newAnnouncement, ProjectType newProjectType) {
+    public ProjectPage UpdateProject(String projectName, String newProjectName, String newAnnouncement) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
@@ -47,15 +47,13 @@ public class ProjectSteps extends BaseStep {
         editProjectPage.getEditName().sendKeys(newProjectName);
         editProjectPage.getEditAnnouncement().clear();
         editProjectPage.getEditAnnouncement().sendKeys(newAnnouncement);
-        editProjectPage.getEditIsShowAnnouncement().click();
-        switch (newProjectType){
-            case MULTIPLE: editProjectPage.getMultipleSuiteMode().click();
-                break;
-            case SINGLE_FOR_ALL_CASES: editProjectPage.getSingleSuiteMode().click();
-                break;
-            case SINGLE_WITH_BASELINE: editProjectPage.getSingleSuiteModeBaseline().click();
-                break;
-        }
+        editProjectPage.getEditIsShowAnnouncement().turnOn();
+
+        editProjectPage.projectRadioButton.selectByName("Use a single repository for all cases (recommended)");
+        editProjectPage.projectRadioButton.selectByNumber(1);
+        editProjectPage.projectRadioButton.selectByValue(3);
+
+        editProjectPage.getIsComplete().turnOff();
         editProjectPage.getSaveProjectButton().click();
         return new ProjectPage(browsersService,false);
     }
@@ -73,4 +71,5 @@ public class ProjectSteps extends BaseStep {
         return new ProjectPage(browsersService,false);
 
     }
+
 }

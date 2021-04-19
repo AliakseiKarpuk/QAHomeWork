@@ -25,7 +25,7 @@ public class AddProjectTest extends BaseTest {
     public void UpdateProject(String projectName, ProjectType projectType, String newProjectName){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage editProjectPage = projectSteps.UpdateProject(projectName,newProjectName,"54321",projectType);
+        ProjectPage editProjectPage = projectSteps.UpdateProject(projectName,newProjectName,"54321");
 
         Assert.assertEquals(editProjectPage.getSuccessText(),"Successfully updated the project.");
         Assert.assertTrue(editProjectPage.checkProjectList(newProjectName));
