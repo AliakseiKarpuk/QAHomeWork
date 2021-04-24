@@ -40,9 +40,13 @@ public class ProjectSteps extends BaseStep {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
+
         ProjectPage projectPage = new ProjectPage(browsersService,true);
         projectPage.selectProject(projectName);
         EditProjectPage editProjectPage = new EditProjectPage(browsersService,false);
+
+       // editProjectPage.dropDownHelp.selectElementInDropDown("Gurock Blog");
+
         editProjectPage.getEditName().clear();
         editProjectPage.getEditName().sendKeys(newProjectName);
         editProjectPage.getEditAnnouncement().clear();
@@ -50,8 +54,8 @@ public class ProjectSteps extends BaseStep {
         editProjectPage.getEditIsShowAnnouncement().turnOn();
 
         editProjectPage.projectRadioButton.selectByName("Use a single repository for all cases (recommended)");
-        editProjectPage.projectRadioButton.selectByNumber(1);
-        editProjectPage.projectRadioButton.selectByValue(3);
+        //editProjectPage.projectRadioButton.selectByNumber(1);
+        //editProjectPage.projectRadioButton.selectByValue(3);
 
         editProjectPage.getIsComplete().turnOff();
         editProjectPage.getSaveProjectButton().click();

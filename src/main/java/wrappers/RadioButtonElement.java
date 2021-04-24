@@ -4,16 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class RadioButtonElements {
+public class RadioButtonElement {
 
     private UIElement webElement;
 
 
-    public RadioButtonElements(WebDriver webDriver, By by) {
+    public RadioButtonElement(WebDriver webDriver, By by) {
         this.webElement = new UIElement(webDriver, by);
     }
 
-    public RadioButtonElements(WebDriver webDriver, WebElement webElement) {
+    public RadioButtonElement(WebDriver webDriver, WebElement webElement) {
         this.webElement = new UIElement(webDriver, webElement);
     }
 

@@ -9,21 +9,21 @@ import java.util.List;
 
 public class RadioButton {
     private UIElement webElement;
-    private List<RadioButtonElements> radioButtonElementsList = new ArrayList<>();
-    private List<RadioButtonElements> radioButtonNameList = new ArrayList<>();
+    private List<RadioButtonElement> radioButtonElementsList = new ArrayList<>();
+    private List<RadioButtonElement> radioButtonNameList = new ArrayList<>();
 
     public RadioButton(WebDriver webDriver, By by) {
         this.webElement = new UIElement(webDriver, by);
-        for(WebElement webElement : webElement.findElements(By.cssSelector("[name='suite_mode']"))){
-            radioButtonElementsList.add(new RadioButtonElements(webDriver, webElement));
+        for(WebElement webElement : webElement.findElements(By.cssSelector("div.radio>label>strong+input"))){
+            radioButtonElementsList.add(new RadioButtonElement(webDriver, webElement));
         }
-        for (WebElement webElement : webElement.findElements(By.xpath("//*[@name='suite_mode']/parent::label/child::strong"))){
-            radioButtonNameList.add(new RadioButtonElements(webDriver, webElement));
+        for (WebElement webElement : webElement.findElements(By.xpath("//div[@class='radio']/label/strong"))){
+            radioButtonNameList.add(new RadioButtonElement(webDriver, webElement));
         }
     }
 
     public void selectByValue(int value){
-        for (RadioButtonElements option : radioButtonElementsList){
+        for (RadioButtonElement option : radioButtonElementsList){
             if(option.getValue().equals(Integer.toString(value))){
                 option.click();
             }
@@ -35,9 +35,8 @@ public class RadioButton {
     }
 
     public void selectByName(String name) {
-        int index = 0;
 
-        for (RadioButtonElements option : radioButtonNameList) {
+        for (RadioButtonElement option : radioButtonNameList) {
             for (int i = 0; i < radioButtonNameList.size(); i++){
                 if(radioButtonNameList.get(i).getName().equals(name)){
                     radioButtonElementsList.get(i).click();

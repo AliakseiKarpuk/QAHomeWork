@@ -5,6 +5,7 @@ import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import wrappers.Checkbox;
+import wrappers.DropDown;
 import wrappers.RadioButton;
 
 public class EditProjectPage extends BasePage {
@@ -18,6 +19,7 @@ public class EditProjectPage extends BasePage {
     protected static final By isCompleteBy = By.id("is_completed");
     protected static final By saveProjectButtonBy  = By.id("accept");
     protected static final By radioButtonBy = By.cssSelector("[class='table']");
+    protected static final By helpDropDownBy = By.id("navigation-menu");
 
     public EditProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -43,5 +45,6 @@ public class EditProjectPage extends BasePage {
     public WebElement getSaveProjectButton(){ return driver.findElement(saveProjectButtonBy);}
 
     public RadioButton projectRadioButton = new RadioButton(driver, radioButtonBy);
+    public DropDown dropDownHelp = new DropDown(driver, helpDropDownBy);
 
 }
