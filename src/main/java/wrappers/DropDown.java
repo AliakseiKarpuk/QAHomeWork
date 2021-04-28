@@ -15,7 +15,7 @@ public class DropDown {
     public DropDown (WebDriver webDriver, By by) {
         this.webElement = new UIElement(webDriver, by);
 
-        for (WebElement webElement : webElement.findElements(By.xpath("//div[contains(@class, 'dropdown')]/ul/li/a"))){
+        for (WebElement webElement : webElement.findElements(By.xpath("//div[contains(@class, 'dropdown')]//a"))){
             dropDownElementsList.add(new DropDownElement(webDriver, webElement));
         }
     }
