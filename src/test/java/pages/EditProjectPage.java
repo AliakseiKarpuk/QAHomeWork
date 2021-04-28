@@ -18,7 +18,7 @@ public class EditProjectPage extends BasePage {
     protected static final By multipleSuiteModeBy = By.id("suite_mode_multi");
     protected static final By isCompleteBy = By.id("is_completed");
     protected static final By saveProjectButtonBy  = By.id("accept");
-    protected static final By radioButtonBy = By.cssSelector("[class='table']");
+    protected static final By radioButtonBy = By.name("suite_mode");
     protected static final By helpDropDownBy = By.id("navigation-menu");
 
     public EditProjectPage(BrowsersService browsersService, boolean openPageByUrl) {

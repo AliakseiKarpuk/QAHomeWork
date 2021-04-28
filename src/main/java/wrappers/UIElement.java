@@ -147,4 +147,9 @@ public class UIElement implements WebElement {
                 .build()
                 .perform();
     }
+
+    public UIElement getParent(){
+        WebElement parent = (WebElement) ((JavascriptExecutor) webDriver).executeScript("return arguments[0].parentNode;", webElement);
+        return new UIElement(webDriver, parent);
+    }
 }

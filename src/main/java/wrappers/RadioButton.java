@@ -8,41 +8,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RadioButton {
-    private UIElement webElement;
-    private List<RadioButtonElement> radioButtonElementsList = new ArrayList<>();
-    private List<RadioButtonElement> radioButtonNameList = new ArrayList<>();
 
-    public RadioButton(WebDriver webDriver, By by) {
-        this.webElement = new UIElement(webDriver, by);
-        for(WebElement webElement : webElement.findElements(By.cssSelector("div.radio>label>strong+input"))){
-            radioButtonElementsList.add(new RadioButtonElement(webDriver, webElement));
-        }
-        for (WebElement webElement : webElement.findElements(By.xpath("//div[@class='radio']/label/strong"))){
-            radioButtonNameList.add(new RadioButtonElement(webDriver, webElement));
-        }
+    private UIElement webElement;
+    private List<UIElement> optionList = new ArrayList<>();
+    private List<String> optionTextList = new ArrayList<>();
+    private WebDriver webDriver;
+
+    public RadioButton(WebDriver webDriver, By by){
+        this.webDriver = webDriver;
+        List<WebElement> option = webDriver.findElements(by);
+        optionTextList = getAllOptions(option);
+
     }
 
-    public void selectByValue(int value){
-        for (RadioButtonElement option : radioButtonElementsList){
-            if(option.getValue().equals(Integer.toString(value))){
-                option.click();
-            }
+    private List<String> getAllOptions(List<WebElement> radioList){
+        List<String> resultNameList = new ArrayList<>();
+
+        for(WebElement webElement : radioList){
+            UIElement uiElement = new UIElement(webDriver, webElement);
+            optionList.add(uiElement);
+            resultNameList.add(uiElement.getParent().findElement(By.tagName("strong")).getText());
         }
+        return resultNameList;
+    }
+
+    public void selectByOpiton(String optionName){
+       int index =  optionTextList.indexOf(optionName);
+       optionList.get(index).click();
+    }
+
+    public void selectByValue(String value){
+        for(WebElement opt : optionList){
+         if(opt.getAttribute("value").equals(value)){
+             opt.click();
+         }
+        }
+
     }
 
     public void selectByNumber(int number){
-            radioButtonElementsList.get(number).click();
-    }
-
-    public void selectByName(String name) {
-
-        for (RadioButtonElement option : radioButtonNameList) {
-            for (int i = 0; i < radioButtonNameList.size(); i++){
-                if(radioButtonNameList.get(i).getName().equals(name)){
-                    radioButtonElementsList.get(i).click();
-                    break;
-                }
-            }
-        }
+        optionList.get(number).click();
     }
 }

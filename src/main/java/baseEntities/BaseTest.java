@@ -9,7 +9,7 @@ import utils.Waits;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
-    protected BrowsersService browsersService;
+    public BrowsersService browsersService;
     protected ReadProperties readProperties;
     protected Waits waits;
 

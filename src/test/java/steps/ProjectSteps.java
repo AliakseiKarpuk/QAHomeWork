@@ -53,7 +53,7 @@ public class ProjectSteps extends BaseStep {
         editProjectPage.getEditAnnouncement().sendKeys(newAnnouncement);
         editProjectPage.getEditIsShowAnnouncement().turnOn();
 
-        editProjectPage.projectRadioButton.selectByName("Use a single repository for all cases (recommended)");
+        editProjectPage.projectRadioButton.selectByValue("1");
         //editProjectPage.projectRadioButton.selectByNumber(1);
         //editProjectPage.projectRadioButton.selectByValue(3);
 
