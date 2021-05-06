@@ -1,4 +1,4 @@
-package tests;
+package tests.uitests;
 
 import baseEntities.BaseTest;
 import org.testng.Assert;
@@ -8,7 +8,7 @@ import steps.LoginSteps;
 
 public class LoginPageTest extends BaseTest {
 
-    @Test
+    @Test(description = "Логин с паролем и емаил")
     public void LoginWithPswAndMail(){
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
@@ -17,30 +17,30 @@ public class LoginPageTest extends BaseTest {
         Assert.assertEquals(browsersService.getDriver().getTitle(), "All Projects - TestRail");
     }
 
-    @Test
+    @Test(description = "Логин без пароля и емаила")
     public void LoginWithoutPasswordAndMail(){
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("","");
 
-        Assert.assertTrue(loginPage.getEmailRequired().isDisplayed());
-        Assert.assertTrue(loginPage.getPswRequired().isDisplayed());
+        Assert.assertTrue(loginPage.emailRequired.isDisplayed());
+        Assert.assertTrue(loginPage.pswRequired.isDisplayed());
 
     }
 
-    @Test
+    @Test(description = "Логин без емаила")
     public void LoginWithoutEmail(){
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("","QqtRK9elseEfAk6ilYcJ");
 
-        Assert.assertTrue(loginPage.getEmailRequired().isDisplayed());
+        Assert.assertTrue(loginPage.emailRequired.isDisplayed());
     }
 
-    @Test
+    @Test(description = "Логин без пароля")
     public void LoginWithoutPsw(){
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("atrostyanko+0401@gmail.com","");
 
-        Assert.assertTrue(loginPage.getPswRequired().isDisplayed());
+        Assert.assertTrue(loginPage.pswRequired.isDisplayed());
     }
 }

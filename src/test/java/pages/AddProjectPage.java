@@ -5,18 +5,24 @@ import core.BrowsersService;
 import enums.ProjectType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import wrappers.Checkbox;
+import wrappers.RadioButton;
 
 public class AddProjectPage extends BasePage {
 
     private static String END_POINT = "index.php?/admin/projects/add/1";
-    protected static final By nameInputBy = By.id("name");
-    protected static final By announcementInputBy = By.id("announcement");
-    protected static final By isShowAnnouncementBy = By.id("show_announcement");
-    protected static final By singleSuiteModeBy = By.id("suite_mode_single");
-    protected static final By singleSuiteModeBaselineBy = By.id("suite_mode_single_baseline");
-    protected static final By multipleSuiteModeBy = By.id("suite_mode_multi");
-    protected static final By addProjectButtonBy  = By.id("accept");
 
+    @FindBy(id = "name")
+    public WebElement nameInput;
+    @FindBy(id = "announcement")
+    public WebElement announcementInput;
+    @FindBy(id = "show_announcement")
+    public WebElement isShowAnnouncement;
+    @FindBy(id = "accept")
+    public WebElement addProjectButton;
+
+    private static final By addProjectRadioButtonBy = By.name("suite_mode");
 
     public AddProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -30,32 +36,10 @@ public class AddProjectPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         try {
-            return getAddProjectButton().isDisplayed();
+            return browsersService.getWaits().waitForVisibility(addProjectButton).isDisplayed();
         } catch (Exception ex) {
             return false;
         }
     }
-
-    public WebElement getNameInput(){
-        return driver.findElement(nameInputBy);
-    }
-    public WebElement getAnnouncementInput(){
-        return driver.findElement(announcementInputBy);
-    }
-    public WebElement getIsShowAnnouncement(){
-        return driver.findElement(isShowAnnouncementBy);
-    }
-    public WebElement getSingleSuiteMode(){
-        return driver.findElement(singleSuiteModeBy);
-    }
-    public WebElement getSingleSuiteModeBaseline(){
-        return driver.findElement(singleSuiteModeBaselineBy);
-    }
-    public WebElement getMultipleSuiteMode(){
-        return driver.findElement(multipleSuiteModeBy);
-    }
-    public WebElement getAddProjectButton(){
-        return driver.findElement(addProjectButtonBy);
-    }
-
+    public RadioButton addProjectRadioButton = new RadioButton(driver, addProjectRadioButtonBy );
 }

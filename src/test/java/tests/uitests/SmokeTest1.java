@@ -1,4 +1,4 @@
-package tests;
+package tests.uitests;
 
 import baseEntities.BaseTest;
 import enums.ProjectType;
@@ -24,34 +24,22 @@ public class SmokeTest1 extends BaseTest {
 
     @Test(groups = "smoke", timeOut = 5000l, description = "Логин с некоректными данными")
     public void LoginTest() {
-/*
-        1. Запустить драйвер
-        2. Перейти на сайт
-        3. Ввести логин
-        4. Ввести пароль
-        5. Нажать Login
-        6. Dashboard page отобразился
-*/
+
         LoginSteps loginSteps = new LoginSteps(browsersService);
-        loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
+
+        DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
 
         Assert.assertEquals(browsersService.getDriver().getTitle(), "All Projects - TestRail");
     }
 
     @Test(groups = "regression")
     public void LoginTestWithIncorrectCredentials() {
-/*
-        1. Запустить драйвер
-        2. Перейти на сайт
-        3. Ввести логин
-        4. Ввести пароль
-        5. Нажать Login
-        6. Dashboard page отобразился
-*/
-        LoginSteps loginSteps = new LoginSteps(browsersService);
-        LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("test@gmail.com", "qweqwe");
 
-        Assert.assertEquals(loginPage.getErrorText(),
+        LoginSteps loginSteps = new LoginSteps(browsersService);
+        LoginPage loginPage = loginSteps
+                .loginWithIncorrectCredentials("fwdfw", "fwwfw");
+
+        Assert.assertEquals(loginPage.errorLabel.getText(),
                 "Email/Login or Password is incorrect. Please try again.");
     }
 

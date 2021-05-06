@@ -3,6 +3,7 @@ package baseEntities;
 import core.BrowsersService;
 import core.ReadProperties;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
     protected static final int WAIT_FOR_PAGE_LOAD_IN_SECONDS = 5;
@@ -17,6 +18,8 @@ public abstract class BasePage {
         this.browsersService = browsersService;
         this.driver = browsersService.getDriver();
         this.baseUrl = new ReadProperties().getURL();
+
+        PageFactory.initElements(this.driver, this);
 
         if (openPageByUrl) {
             openPage();

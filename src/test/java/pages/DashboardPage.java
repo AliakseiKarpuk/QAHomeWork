@@ -4,11 +4,14 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class DashboardPage extends BasePage {
     private static String END_POINT = "index.php?/dashboard";
 
-    protected static final By sidebarProjectsAddButtonBy = By.id("sidebar-projects-add");
+    @FindBy(id = "sidebar-projects-add")
+    public WebElement sidebarProjectsAddButton;
+
     protected static final String projectWithTestCases = "//a[text()='remove']";
 
     public DashboardPage(BrowsersService browsersService, boolean openPageByUrl) {
@@ -23,14 +26,12 @@ public class DashboardPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         try {
-            return getSidebarProjectsAddButton().isDisplayed();
+            return browsersService.getWaits().waitForVisibility(sidebarProjectsAddButton).isDisplayed();
         } catch (Exception ex) {
             return false;
         }
 
     }
-
-    public WebElement getSidebarProjectsAddButton() { return driver.findElement(sidebarProjectsAddButtonBy); }
     public WebElement getProjectWithTestCases(String projectName){
         return driver.findElement(By.xpath(projectWithTestCases.replace("remove", projectName)));
     }

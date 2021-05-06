@@ -3,8 +3,7 @@
 <suite name="general" thread-count="2" parallel="classes">
     <test name="all tests">
         <classes>
-            <class name="tests.LoginPageTest"></class>
-            <class name="tests.AddProjectTest"></class>
+            <class name="tests.uitests.AddProjectTest"></class>
         </classes>
     </test>
 </suite>
