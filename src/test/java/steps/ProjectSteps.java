@@ -3,6 +3,7 @@ package steps;
 import baseEntities.BaseStep;
 import core.BrowsersService;
 import enums.ProjectType;
+import io.qameta.allure.Step;
 import models.Project;
 import pages.AddProjectPage;
 import pages.EditProjectPage;
@@ -15,6 +16,7 @@ public class ProjectSteps extends BaseStep {
         super(browsersService);
     }
 
+    @Step("Добавление проекта с разыми значениями ")
     public ProjectPage AddProject(String name, ProjectType projectType) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
@@ -36,6 +38,7 @@ public class ProjectSteps extends BaseStep {
         return new ProjectPage(browsersService,false);
     }
 
+    @Step("Обновление проекта '{projectName}'")
     public ProjectPage UpdateProject(String projectName, String newProjectName, String newAnnouncement) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
@@ -62,6 +65,7 @@ public class ProjectSteps extends BaseStep {
         return new ProjectPage(browsersService,false);
     }
 
+    @Step("Удаление проекта '{projectName}'")
     public ProjectPage DeleteProject(String projectName) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);

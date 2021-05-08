@@ -2,6 +2,7 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
+import io.qameta.allure.Step;
 import pages.AddTestCasesPage;
 import pages.DashboardPage;
 import pages.OpenProjectPage;
@@ -14,6 +15,7 @@ public class AddTestCasesStep extends BaseStep {
         super(browsersService);
     }
 
+    @Step("Добавление тест кейса '{testCaseName}' с разными значениями")
     public OpenProjectPage addTestCases(String projectName, String testCaseName, String preconditionsText, String stepText, String expectedResultText){
         LoginSteps loginSteps = new LoginSteps(browsersService);
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
@@ -32,6 +34,7 @@ public class AddTestCasesStep extends BaseStep {
 
     }
 
+    @Step("Обновление тест кейса '{testCaseName}' с разными значениями")
     public OpenProjectPage updateTestCase(String projectName, String testCaseName, String newTestCaseName, String preconditionsText, String stepText, String expectedResultText) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
@@ -52,6 +55,7 @@ public class AddTestCasesStep extends BaseStep {
         return new OpenProjectPage(browsersService, false);
     }
 
+    @Step("Удаление тест кейса '{testCaseName}'")
     public OpenProjectPage deleteTestCase(String projectName, String testCaseName){
 
         LoginSteps loginSteps = new LoginSteps(browsersService);

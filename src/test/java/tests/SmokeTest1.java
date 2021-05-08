@@ -2,6 +2,7 @@ package tests;
 
 import baseEntities.BaseTest;
 import enums.ProjectType;
+import io.qameta.allure.Description;
 import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -22,7 +23,8 @@ import javax.swing.*;
 
 public class SmokeTest1 extends BaseTest {
 
-    @Test(groups = "smoke", timeOut = 5000l, description = "Логин с некоректными данными")
+    @Test(groups = "smoke", timeOut = 5000l, description = "Логин с коректными данными")
+    @Description("Логин с корректным паролем и емаилом")
     public void LoginTest() {
 /*
         1. Запустить драйвер
@@ -38,7 +40,8 @@ public class SmokeTest1 extends BaseTest {
         Assert.assertEquals(browsersService.getDriver().getTitle(), "All Projects - TestRail");
     }
 
-    @Test(groups = "regression")
+    @Test(groups = "regression", description = "Логин с некоректными данными")
+    @Description("Логин с некорректным паролем и емаилом")
     public void LoginTestWithIncorrectCredentials() {
 /*
         1. Запустить драйвер
