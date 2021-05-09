@@ -9,28 +9,45 @@ import pages.LoginPage;
 
 public class LoginSteps extends BaseStep {
 
+    private LoginPage loginPage;
+
     public LoginSteps(BrowsersService browsersService) {
         super(browsersService);
+        loginPage = new LoginPage(browsersService, false);
     }
 
-    @Step("Логин с корректными емаил '{email}' и пароль '{psw}'")
-    public DashboardPage loginWithCorrectCredentials(String email, String psw) {
-        LoginPage loginPage = new LoginPage(browsersService, true);
-        loginPage.emailInput.sendKeys(email);
-        loginPage.passwordInput.sendKeys(psw);
-        loginPage.logInButton.click();
+    public DashboardPage loginWithCorrectCredentials(String email, String psw){
+
+        setEmail(email);
+        setPsw(psw);
+        clickBtn();
 
         return new DashboardPage(browsersService, false);
     }
 
-    @Step("Логин с некорректными емаил '{email}' и пароль '{psw}'")
-    public LoginPage loginWithIncorrectCredentials(String email, String psw) {
-        LoginPage loginPage = new LoginPage(browsersService, true);
-        loginPage.emailInput.sendKeys(email);
-        loginPage.passwordInput.sendKeys(psw);
-        loginPage.logInButton.click();
+    public LoginPage loginWithIncorrectCredentials(String email, String psw){
 
-        return new LoginPage(browsersService, false);
+        setEmail(email);
+        setPsw(psw);
+        clickBtn();
+
+        return loginPage;
+
+    }
+
+    private LoginSteps setEmail(String email){
+        loginPage.emailInput.sendKeys(email);
+        return this;
+    }
+
+    private LoginSteps setPsw(String psw){
+        loginPage.passwordInput.sendKeys(psw);
+        return this;
+    }
+
+    private  LoginSteps clickBtn(){
+        loginPage.logInButton.click();
+        return this;
     }
 
 }

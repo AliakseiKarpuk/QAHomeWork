@@ -17,7 +17,7 @@ public class AddProjectPage extends BasePage {
      @FindBy(id = "announcement")
     public WebElement announcementInput;
      @FindBy(id = "show_announcement")
-    public Checkbox isShowAnnouncement;
+    public WebElement isShowAnnouncement;
      @FindBy(id = "suite_mode_single")
     public WebElement singleSuiteMode;
      @FindBy(id = "suite_mode_single_baseline")

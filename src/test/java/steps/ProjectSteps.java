@@ -25,7 +25,7 @@ public class ProjectSteps extends BaseStep {
         AddProjectPage addProjectPage = new AddProjectPage(browsersService,true);
         addProjectPage.nameInput.sendKeys(name);
         addProjectPage.announcementInput.sendKeys("12345");
-        addProjectPage.isShowAnnouncement.turnOn();
+        addProjectPage.isShowAnnouncement.click();
         addProjectPage.addProjectButton.click();
 
         return new ProjectPage(browsersService,false);
@@ -45,9 +45,9 @@ public class ProjectSteps extends BaseStep {
         editProjectPage.editName.sendKeys(newProjectName);
         editProjectPage.editAnnouncement.clear();
         editProjectPage.editAnnouncement.sendKeys(newAnnouncement);
-        editProjectPage.editIsShowAnnouncement.turnOn();
+        editProjectPage.editIsShowAnnouncement.click();
         editProjectPage.projectRadioButton.selectByValue("1");
-        editProjectPage.isComplete.turnOff();
+        editProjectPage.isComplete.click();
         editProjectPage.saveProjectButton.click();
 
         return new ProjectPage(browsersService,false);

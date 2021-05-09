@@ -16,9 +16,9 @@ public class EditProjectPage extends BasePage {
      @FindBy(id = "announcement")
     public WebElement editAnnouncement;
      @FindBy(id = "show_announcement")
-    public Checkbox editIsShowAnnouncement;
+    public WebElement editIsShowAnnouncement;
      @FindBy(id = "is_completed")
-    public Checkbox isComplete;
+    public WebElement isComplete;
      @FindBy(id = "accept")
     public WebElement saveProjectButton;
 

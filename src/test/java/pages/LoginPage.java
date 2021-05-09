@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "password")
     public WebElement passwordInput;
     @FindBy(id = "button_primary")
-    public Button logInButton;
+    public WebElement logInButton;
     @FindBy(className = "error-text")
     public WebElement errorLabel;
     @FindBy(xpath = "//div[text()='Email/Login is required.']")
