@@ -2,6 +2,8 @@ package tests;
 
 import baseEntities.BaseTest;
 import io.qameta.allure.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -11,6 +13,8 @@ import steps.LoginSteps;
 @Feature("Login")
 @Severity(SeverityLevel.BLOCKER)
 public class LoginPageTest extends BaseTest {
+
+    public Logger logger = LogManager.getLogger();
 
     @Test(description = "Логин с коректными данными")
     @Description("Логин с корректными паролем и емаил")

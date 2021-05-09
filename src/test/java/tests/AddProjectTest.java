@@ -4,6 +4,8 @@ import baseEntities.BaseTest;
 import enums.ProjectType;
 import io.qameta.allure.*;
 import models.Project;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ProjectPage;
@@ -14,6 +16,8 @@ import testData.AddProjectProvider;
 @Feature("Add Project")
 @Severity(SeverityLevel.CRITICAL)
 public class AddProjectTest extends BaseTest {
+
+    public Logger logger = LogManager.getLogger();
 
 
     @Test
@@ -29,6 +33,8 @@ public class AddProjectTest extends BaseTest {
                 .value("1")
                 .build();
         ProjectPage projectPage = projectSteps.AddProject(project);
+
+        logger.debug(project.toString());
 
         Assert.assertEquals(projectPage.getSuccessText(),"Successfully added the new project.");
         Assert.assertTrue(projectPage.checkProjectList(project.getName()));
@@ -49,6 +55,8 @@ public class AddProjectTest extends BaseTest {
                 .build();
         ProjectPage editProjectPage = projectSteps.UpdateProject(project);
 
+        logger.debug(project.toString());
+
         Assert.assertEquals(editProjectPage.getSuccessText(),"Successfully updated the project.");
         Assert.assertTrue(editProjectPage.checkProjectList(project.getNewName()));
 
@@ -60,6 +68,7 @@ public class AddProjectTest extends BaseTest {
     public void DeleteProject(String projectName){
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
         ProjectPage deleteProject = projectSteps.DeleteProject(projectName);
+        logger.debug(projectName);
 
         Assert.assertEquals(deleteProject.getSuccessText(),"Successfully deleted the project.");
         Assert.assertEquals(deleteProject.checkProjectList(projectName),false);

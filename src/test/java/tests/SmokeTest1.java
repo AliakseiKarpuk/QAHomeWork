@@ -4,6 +4,8 @@ import baseEntities.BaseTest;
 import enums.ProjectType;
 import io.qameta.allure.Description;
 import models.Project;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -22,6 +24,8 @@ import steps.ProjectSteps;
 import javax.swing.*;
 
 public class SmokeTest1 extends BaseTest {
+
+    public Logger logger = LogManager.getLogger();
 
     @Test(groups = "smoke", timeOut = 5000l, description = "Логин с коректными данными")
     @Description("Логин с корректным паролем и емаилом")

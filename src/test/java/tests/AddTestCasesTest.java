@@ -3,6 +3,8 @@ package tests;
 import baseEntities.BaseTest;
 import io.qameta.allure.*;
 import models.TestCase;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,6 +17,8 @@ import testData.AddTestCaseProvider;
 @Feature("Add Testcase")
 @Severity(SeverityLevel.CRITICAL)
 public class AddTestCasesTest extends BaseTest {
+
+    public Logger logger = LogManager.getLogger();
 
     @Test
     @Description("Добавление трех тест кейсов с разныими значениями")
@@ -32,6 +36,7 @@ public class AddTestCasesTest extends BaseTest {
         addTestCasesStep.addTestCases(testCase);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
+        logger.debug(testCase.toString());
         Assert.assertTrue(openProjectPage.getTestCase(testCase.getTestCaseName()).isDisplayed());
     }
 
@@ -53,6 +58,8 @@ public class AddTestCasesTest extends BaseTest {
         updateTestCasesStep.updateTestCase(testCase);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
+        logger.debug(testCase.toString());
+
         Assert.assertEquals(openProjectPage.successText.getText(),"Successfully updated the test case.");
     }
 
@@ -68,6 +75,9 @@ public class AddTestCasesTest extends BaseTest {
 
         AddTestCasesStep deleteTestCaseStep = new AddTestCasesStep(browsersService);
         deleteTestCaseStep.deleteTestCase(testCase);
+
+        logger.debug(testCase.toString());
+
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
         Assert.assertEquals(openProjectPage.successText.getText(),"Successfully flagged the test case as deleted.");
