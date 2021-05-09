@@ -3,6 +3,7 @@ package steps;
 import baseEntities.BaseStep;
 import core.BrowsersService;
 import io.qameta.allure.Step;
+import models.TestCase;
 import pages.AddTestCasesPage;
 import pages.DashboardPage;
 import pages.OpenProjectPage;
@@ -16,17 +17,18 @@ public class AddTestCasesStep extends BaseStep {
     }
 
     @Step("Добавление тест кейса '{testCaseName}' с разными значениями")
-    public OpenProjectPage addTestCases(String projectName, String testCaseName, String preconditionsText, String stepText, String expectedResultText){
+    public OpenProjectPage addTestCases(TestCase testCase){
         LoginSteps loginSteps = new LoginSteps(browsersService);
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-        dashboardPage.getProjectWithTestCases(projectName).click();
+        dashboardPage.getProjectWithTestCases(testCase.getProjectName()).click();
+
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
         openProjectPage.addTestCasesButton.click();
+
         AddTestCasesPage addTestCasesPage = new AddTestCasesPage(browsersService,false);
-        addTestCasesPage.title.sendKeys(testCaseName);
-        addTestCasesPage.preconditions.sendKeys(preconditionsText);
-        addTestCasesPage.steps.sendKeys(stepText);
-        addTestCasesPage.expectedResult.sendKeys(expectedResultText);
+        addTestCasesPage.title.sendKeys(testCase.getTestCaseName());
+        addTestCasesPage.preconditions.sendKeys(testCase.getPreconditionText());
+        addTestCasesPage.steps.sendKeys(testCase.getStepText());
         addTestCasesPage.addTestCaseButton.click();
         openProjectPage.getAllTestCases.click();
 
@@ -35,35 +37,37 @@ public class AddTestCasesStep extends BaseStep {
     }
 
     @Step("Обновление тест кейса '{testCaseName}' с разными значениями")
-    public OpenProjectPage updateTestCase(String projectName, String testCaseName, String newTestCaseName, String preconditionsText, String stepText, String expectedResultText) {
+    public OpenProjectPage updateTestCase(TestCase testCase) {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-        dashboardPage.getProjectWithTestCases(projectName).click();
+        dashboardPage.getProjectWithTestCases(testCase.getProjectName()).click();
+
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
         openProjectPage.getAllTestCases.click();
-        openProjectPage.getTestCase(testCaseName).click();
+        openProjectPage.getTestCase(testCase.getTestCaseName()).click();
         openProjectPage.editButton.click();
+
         AddTestCasesPage updateTestCase = new AddTestCasesPage(browsersService);
         updateTestCase.title.clear();
-        updateTestCase.title.sendKeys(newTestCaseName);
-        updateTestCase.preconditions.sendKeys(preconditionsText);
-        updateTestCase.steps.sendKeys(stepText);
-        updateTestCase.expectedResult.sendKeys(expectedResultText);
+        updateTestCase.title.sendKeys(testCase.getNewTestCaseName());
+        updateTestCase.preconditions.sendKeys(testCase.getPreconditionText());
+        updateTestCase.steps.sendKeys(testCase.getStepText());
+        updateTestCase.expectedResult.sendKeys(testCase.getExpectedResultText());
         updateTestCase.addTestCaseButton.click();
 
         return new OpenProjectPage(browsersService, false);
     }
 
     @Step("Удаление тест кейса '{testCaseName}'")
-    public OpenProjectPage deleteTestCase(String projectName, String testCaseName){
+    public OpenProjectPage deleteTestCase(TestCase testCase){
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-        dashboardPage.getProjectWithTestCases(projectName).click();
+        dashboardPage.getProjectWithTestCases(testCase.getProjectName()).click();
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
         openProjectPage.getAllTestCases.click();
-        openProjectPage.getTestCase(testCaseName).click();
+        openProjectPage.getTestCase(testCase.getTestCaseName()).click();
         openProjectPage.editButton.click();
         AddTestCasesPage deleteTestCase = new AddTestCasesPage(browsersService);
         deleteTestCase.deleteTestCaseButton.click();

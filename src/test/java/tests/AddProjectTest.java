@@ -3,6 +3,7 @@ package tests;
 import baseEntities.BaseTest;
 import enums.ProjectType;
 import io.qameta.allure.*;
+import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ProjectPage;
@@ -15,32 +16,45 @@ import testData.AddProjectProvider;
 public class AddProjectTest extends BaseTest {
 
 
-    @Test(dataProvider = "Add Project", dataProviderClass = AddProjectProvider.class, description = "Добавление проекта")
+    @Test
     @Description("Добавление трех проектов с разныими значениями")
     @Story("Добавление Проекта")
-    public void AddProject(String projectName, ProjectType projectType){
+    public void AddProject(){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage projectPage = projectSteps.AddProject(projectName, projectType);
+
+        Project project = Project.builder()
+                .name("someName")
+                .announcement("someannoun")
+                .value("1")
+                .build();
+        ProjectPage projectPage = projectSteps.AddProject(project);
 
         Assert.assertEquals(projectPage.getSuccessText(),"Successfully added the new project.");
-        Assert.assertTrue(projectPage.checkProjectList(projectName));
+        Assert.assertTrue(projectPage.checkProjectList(project.getName()));
     }
 
-    @Test(dependsOnMethods = "AddProject", dataProvider = "Update Project", dataProviderClass = AddProjectProvider.class, description = "Обновление проекта")
+    @Test
     @Description("Обновление трех проектов с другими значениями")
     @Story("Обновление Проекта")
-    public void UpdateProject(String projectName, ProjectType projectType, String newProjectName){
+    public void UpdateProject(){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage editProjectPage = projectSteps.UpdateProject(projectName,newProjectName,"54321");
+
+        Project project = Project.builder()
+                .name("someName")
+                .newName("anotherName")
+                .announcement("someannoun")
+                .value("2")
+                .build();
+        ProjectPage editProjectPage = projectSteps.UpdateProject(project);
 
         Assert.assertEquals(editProjectPage.getSuccessText(),"Successfully updated the project.");
-        Assert.assertTrue(editProjectPage.checkProjectList(newProjectName));
+        Assert.assertTrue(editProjectPage.checkProjectList(project.getNewName()));
 
     }
 
-    @Test(dependsOnMethods = "UpdateProject", dataProvider = "Delete Project", dataProviderClass = AddProjectProvider.class, description = "Удаление проекта")
+    @Test
     @Description("Удаление трех проектов")
     @Story("Удаление Проекта")
     public void DeleteProject(String projectName){

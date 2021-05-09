@@ -10,11 +10,11 @@ public class AddTestCasesPage extends BasePage {
 
     @FindBy(id = "title")
     public WebElement title;
-    @FindBy(css = "#custom_preconds.form-control")
+    @FindBy(id = "custom_preconds_display")
     public WebElement preconditions;
-    @FindBy(css = "#custom_steps.form-control")
+    @FindBy(id = "custom_steps_display")
     public WebElement steps;
-    @FindBy(css = "#custom_expected.form-control")
+    @FindBy(id = "custom_expected_attachments_wrapper")
     public WebElement expectedResult;
     @FindBy(id = "accept")
     public WebElement addTestCaseButton;
@@ -35,7 +35,7 @@ public AddTestCasesPage(BrowsersService browsersService) {
 
     @Override
     public boolean isPageOpened() {
-        return browsersService.getWaits().waitForVisibility(addTestCaseButton).isDisplayed();
+        return browsersService.getWaits().waitForVisibility(expectedResult).isDisplayed();
 
     }
 

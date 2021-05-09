@@ -2,6 +2,7 @@ package tests;
 
 import baseEntities.BaseTest;
 import io.qameta.allure.*;
+import models.TestCase;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,37 +16,58 @@ import testData.AddTestCaseProvider;
 @Severity(SeverityLevel.CRITICAL)
 public class AddTestCasesTest extends BaseTest {
 
-    @Test(dataProvider = "Add Test Case", dataProviderClass = AddTestCaseProvider.class, description = "Добавление тест кейса")
+    @Test
     @Description("Добавление трех тест кейсов с разныими значениями")
     @Story("Добавление Тест кейса")
-    public void AddTestCase(String projectName, String testCaseName, String preconditionText, String stepsText, String expectedResultText){
+    public void AddTestCase(){
+
+        TestCase testCase = TestCase.builder()
+                .projectName("someName")
+                .testCaseName("New TESTCASE")
+                .preconditionText("dwdwdwdw")
+                .stepText("dsdsds")
+                .build();
 
         AddTestCasesStep addTestCasesStep = new AddTestCasesStep(browsersService);
-        addTestCasesStep.addTestCases(projectName, testCaseName, preconditionText, stepsText, expectedResultText);
+        addTestCasesStep.addTestCases(testCase);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
-        Assert.assertTrue(openProjectPage.getTestCase(testCaseName).isDisplayed());
+        Assert.assertTrue(openProjectPage.getTestCase(testCase.getTestCaseName()).isDisplayed());
     }
 
-    @Test(dataProvider = "Update Test Case", dataProviderClass = AddTestCaseProvider.class, dependsOnMethods = "AddTestCase", description = "Обновление тест кейса")
+    @Test(dependsOnMethods = "AddTestCase", description = "Обновление тест кейса")
     @Description("Обновление трех тест кейсов с разныими значениями")
     @Story("Обновление Тест кейса")
-    public void UpdateTestCase(String projectName, String testCaseName, String newTestCaseName, String preconditionText, String stepsText, String expectedResultText){
+    public void UpdateTestCase(){
+
+        TestCase testCase = TestCase.builder()
+                .projectName("someName")
+                .testCaseName("New TESTCASE")
+                .newTestCaseName("NEW TEST CASE NAME")
+                .preconditionText("dwdwdwdw12321321")
+                .stepText("dwd123123213")
+                .expectedResultText("dozhd ozhidaetsya12321321")
+                .build();
 
         AddTestCasesStep updateTestCasesStep = new AddTestCasesStep(browsersService);
-        updateTestCasesStep.updateTestCase(projectName, testCaseName, newTestCaseName, preconditionText, stepsText, expectedResultText);
+        updateTestCasesStep.updateTestCase(testCase);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
         Assert.assertEquals(openProjectPage.successText.getText(),"Successfully updated the test case.");
     }
 
-    @Test(dataProvider = "Delete Test Case", dataProviderClass = AddTestCaseProvider.class, dependsOnMethods = "UpdateTestCase", description = "Удаление тест кейса")
+    @Test(dependsOnMethods = "UpdateTestCase", description = "Удаление тест кейса")
     @Description("Удаление трех тест кейсов")
     @Story("Удаление Тест кейса")
-    public void DeleteTestCase(String projectName, String testCaseName){
+    public void DeleteTestCase(){
+
+        TestCase testCase = TestCase.builder()
+                .projectName("someName")
+                .testCaseName("NEW TEST CASE NAME")
+                .build();
 
         AddTestCasesStep deleteTestCaseStep = new AddTestCasesStep(browsersService);
-        deleteTestCaseStep.deleteTestCase(projectName, testCaseName);
+        deleteTestCaseStep.deleteTestCase(testCase);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
         Assert.assertEquals(openProjectPage.successText.getText(),"Successfully flagged the test case as deleted.");

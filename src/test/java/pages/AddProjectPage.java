@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import wrappers.Checkbox;
+import wrappers.RadioButton;
 
 public class AddProjectPage extends BasePage {
 
@@ -18,15 +19,10 @@ public class AddProjectPage extends BasePage {
     public WebElement announcementInput;
      @FindBy(id = "show_announcement")
     public WebElement isShowAnnouncement;
-     @FindBy(id = "suite_mode_single")
-    public WebElement singleSuiteMode;
-     @FindBy(id = "suite_mode_single_baseline")
-    public WebElement singleSuiteModeBaseline;
-     @FindBy(id = "suite_mode_multi")
-    public WebElement multipleSuiteMode;
      @FindBy(id = "accept")
     public WebElement addProjectButton;
 
+    private static final By addProjectRadioButtonBy = By.name("suite_mode");
 
     public AddProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -45,5 +41,7 @@ public class AddProjectPage extends BasePage {
             return false;
         }
     }
+
+    public RadioButton addProjectRadioButton = new RadioButton(driver, addProjectRadioButtonBy );
 
 }
