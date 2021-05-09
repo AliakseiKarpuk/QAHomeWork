@@ -21,19 +21,12 @@ public class ProjectSteps extends BaseStep {
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
+
         AddProjectPage addProjectPage = new AddProjectPage(browsersService,true);
-        addProjectPage.getNameInput().sendKeys(name);
-        addProjectPage.getAnnouncementInput().sendKeys("12345");
-        addProjectPage.getIsShowAnnouncement().click();
-        switch (projectType){
-            case MULTIPLE: addProjectPage.getMultipleSuiteMode().click();
-            break;
-            case SINGLE_FOR_ALL_CASES: addProjectPage.getSingleSuiteMode().click();
-            break;
-            case SINGLE_WITH_BASELINE: addProjectPage.getSingleSuiteModeBaseline().click();
-            break;
-        }
-        addProjectPage.getAddProjectButton().click();
+        addProjectPage.nameInput.sendKeys(name);
+        addProjectPage.announcementInput.sendKeys("12345");
+        addProjectPage.isShowAnnouncement.turnOn();
+        addProjectPage.addProjectButton.click();
 
         return new ProjectPage(browsersService,false);
     }
@@ -46,22 +39,17 @@ public class ProjectSteps extends BaseStep {
 
         ProjectPage projectPage = new ProjectPage(browsersService,true);
         projectPage.selectProject(projectName);
+
         EditProjectPage editProjectPage = new EditProjectPage(browsersService,false);
-
-       // editProjectPage.dropDownHelp.selectElementInDropDown("Gurock Blog");
-
-        editProjectPage.getEditName().clear();
-        editProjectPage.getEditName().sendKeys(newProjectName);
-        editProjectPage.getEditAnnouncement().clear();
-        editProjectPage.getEditAnnouncement().sendKeys(newAnnouncement);
-        editProjectPage.getEditIsShowAnnouncement().turnOn();
-
+        editProjectPage.editName.clear();
+        editProjectPage.editName.sendKeys(newProjectName);
+        editProjectPage.editAnnouncement.clear();
+        editProjectPage.editAnnouncement.sendKeys(newAnnouncement);
+        editProjectPage.editIsShowAnnouncement.turnOn();
         editProjectPage.projectRadioButton.selectByValue("1");
-        //editProjectPage.projectRadioButton.selectByNumber(1);
-        //editProjectPage.projectRadioButton.selectByValue(3);
+        editProjectPage.isComplete.turnOff();
+        editProjectPage.saveProjectButton.click();
 
-        editProjectPage.getIsComplete().turnOff();
-        editProjectPage.getSaveProjectButton().click();
         return new ProjectPage(browsersService,false);
     }
 
@@ -73,8 +61,8 @@ public class ProjectSteps extends BaseStep {
         ProjectPage projectPage = new ProjectPage(browsersService,true);
         projectPage.deleteSelectProject(projectName);
         DeleteConfirm deleteConfirm = new DeleteConfirm(browsersService);
-        deleteConfirm.confirmDelete().click();
-        deleteConfirm.okButton().click();
+        deleteConfirm.confirmDelete.click();
+        deleteConfirm.okButton.click();
 
         return new ProjectPage(browsersService,false);
 

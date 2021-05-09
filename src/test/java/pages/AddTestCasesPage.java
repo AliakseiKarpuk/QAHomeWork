@@ -4,17 +4,22 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class AddTestCasesPage extends BasePage {
 
-    protected static final By titleBy = By.id("title");
-    protected static final By typeBy = By.id("type_id_chzn_o_4");
-    protected static final By priorityBy = By.id("priority_id_chzn_o_3");
-    protected static final By preconditionsBy = By.cssSelector("#custom_preconds.form-control");
-    protected static final By stepsBy = By.cssSelector("#custom_steps.form-control");
-    protected static final By expectedResult = By.cssSelector("#custom_expected.form-control");
-    protected static final By addTestCaseButtonBy = By.id("accept");
-    protected static final By deleteTestCaseButtonBy = By.xpath("//*[@class='button button-negative button-delete']/parent::a[@href]");
+    @FindBy(id = "title")
+    public WebElement title;
+    @FindBy(css = "#custom_preconds.form-control")
+    public WebElement preconditions;
+    @FindBy(css = "#custom_steps.form-control")
+    public WebElement steps;
+    @FindBy(css = "#custom_expected.form-control")
+    public WebElement expectedResult;
+    @FindBy(id = "accept")
+    public WebElement addTestCaseButton;
+    @FindBy(xpath= "//*[@class='button button-negative button-delete']/parent::a[@href]")
+    public WebElement deleteTestCaseButton;
 
     public AddTestCasesPage(BrowsersService browsersService, boolean openPageByUrl) {
         super(browsersService, openPageByUrl);
@@ -30,21 +35,8 @@ public AddTestCasesPage(BrowsersService browsersService) {
 
     @Override
     public boolean isPageOpened() {
-        return getTitleInput().isDisplayed();
+        return browsersService.getWaits().waitForVisibility(addTestCaseButton).isDisplayed();
 
     }
 
-    public WebElement getTitleInput(){
-        return browsersService.getWaits().waitForVisibility(titleBy);}
-    public WebElement getType(){ return driver.findElement(typeBy);}
-    public WebElement getPriority(){ return driver.findElement(priorityBy);}
-    public WebElement getPreconditions(){ return driver.findElement(preconditionsBy);}
-    public WebElement getSteps(){ return driver.findElement(stepsBy);}
-    public WebElement getExpectedResult(){ return driver.findElement(expectedResult);}
-    public WebElement getAcceptCaseButton(){
-        return browsersService.getWaits().waitForVisibility(addTestCaseButtonBy);
-    }
-    public WebElement getDeleteTestCaseButton(){
-        return browsersService.getWaits().waitForVisibility(deleteTestCaseButtonBy);
-    }
 }

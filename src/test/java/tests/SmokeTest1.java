@@ -26,14 +26,7 @@ public class SmokeTest1 extends BaseTest {
     @Test(groups = "smoke", timeOut = 5000l, description = "Логин с коректными данными")
     @Description("Логин с корректным паролем и емаилом")
     public void LoginTest() {
-/*
-        1. Запустить драйвер
-        2. Перейти на сайт
-        3. Ввести логин
-        4. Ввести пароль
-        5. Нажать Login
-        6. Dashboard page отобразился
-*/
+
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
 
@@ -43,18 +36,11 @@ public class SmokeTest1 extends BaseTest {
     @Test(groups = "regression", description = "Логин с некоректными данными")
     @Description("Логин с некорректным паролем и емаилом")
     public void LoginTestWithIncorrectCredentials() {
-/*
-        1. Запустить драйвер
-        2. Перейти на сайт
-        3. Ввести логин
-        4. Ввести пароль
-        5. Нажать Login
-        6. Dashboard page отобразился
-*/
+
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("test@gmail.com", "qweqwe");
 
-        Assert.assertEquals(loginPage.getErrorText(),
+        Assert.assertEquals(loginPage.errorLabel.getText(),
                 "Email/Login or Password is incorrect. Please try again.");
     }
 

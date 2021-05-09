@@ -4,20 +4,24 @@ import baseEntities.BasePage;
 import core.BrowsersService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import wrappers.Checkbox;
 import wrappers.DropDown;
 import wrappers.RadioButton;
 
 public class EditProjectPage extends BasePage {
 
-    protected static final By editNameBy = By.id("name");
-    protected static final By editAnnouncementBy = By.id("announcement");
-    protected static final By editIsShowAnnouncementBy = By.id("show_announcement");
-    protected static final By singleSuiteModeBy = By.id("suite_mode_single");
-    protected static final By singleSuiteModeBaselineBy = By.id("suite_mode_single_baseline");
-    protected static final By multipleSuiteModeBy = By.id("suite_mode_multi");
-    protected static final By isCompleteBy = By.id("is_completed");
-    protected static final By saveProjectButtonBy  = By.id("accept");
+    @FindBy(id = "name")
+    public WebElement editName;
+     @FindBy(id = "announcement")
+    public WebElement editAnnouncement;
+     @FindBy(id = "show_announcement")
+    public Checkbox editIsShowAnnouncement;
+     @FindBy(id = "is_completed")
+    public Checkbox isComplete;
+     @FindBy(id = "accept")
+    public WebElement saveProjectButton;
+
     protected static final By radioButtonBy = By.name("suite_mode");
     protected static final By helpDropDownBy = By.id("navigation-menu");
 
@@ -32,17 +36,8 @@ public class EditProjectPage extends BasePage {
 
     @Override
     public boolean isPageOpened() {
-        return getEditName().isDisplayed();
+        return browsersService.getWaits().waitForVisibility(saveProjectButton).isDisplayed();
     }
-
-    public WebElement getEditName(){ return driver.findElement(editNameBy);}
-    public WebElement getEditAnnouncement(){ return driver.findElement(editAnnouncementBy);}
-    public Checkbox getEditIsShowAnnouncement(){ return new Checkbox(driver, editIsShowAnnouncementBy);}
-    public WebElement getSingleSuiteMode(){ return driver.findElement(singleSuiteModeBy);}
-    public WebElement getSingleSuiteModeBaseline(){ return driver.findElement(singleSuiteModeBaselineBy);}
-    public WebElement getMultipleSuiteMode(){ return driver.findElement(multipleSuiteModeBy);}
-    public Checkbox getIsComplete(){ return new Checkbox(driver, isCompleteBy);}
-    public WebElement getSaveProjectButton(){ return driver.findElement(saveProjectButtonBy);}
 
     public RadioButton projectRadioButton = new RadioButton(driver, radioButtonBy);
     public DropDown dropDownHelp = new DropDown(driver, helpDropDownBy);

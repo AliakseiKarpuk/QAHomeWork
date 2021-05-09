@@ -21,14 +21,14 @@ public class AddTestCasesStep extends BaseStep {
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
         dashboardPage.getProjectWithTestCases(projectName).click();
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
-        openProjectPage.getAddTestCasesButton().click();
+        openProjectPage.addTestCasesButton.click();
         AddTestCasesPage addTestCasesPage = new AddTestCasesPage(browsersService,false);
-        addTestCasesPage.getTitleInput().sendKeys(testCaseName);
-        addTestCasesPage.getPreconditions().sendKeys(preconditionsText);
-        addTestCasesPage.getSteps().sendKeys(stepText);
-        addTestCasesPage.getExpectedResult().sendKeys(expectedResultText);
-        addTestCasesPage.getAcceptCaseButton().click();
-        openProjectPage.getAllTestCasesButton().click();
+        addTestCasesPage.title.sendKeys(testCaseName);
+        addTestCasesPage.preconditions.sendKeys(preconditionsText);
+        addTestCasesPage.steps.sendKeys(stepText);
+        addTestCasesPage.expectedResult.sendKeys(expectedResultText);
+        addTestCasesPage.addTestCaseButton.click();
+        openProjectPage.getAllTestCases.click();
 
         return new OpenProjectPage(browsersService,false);
 
@@ -41,16 +41,16 @@ public class AddTestCasesStep extends BaseStep {
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
         dashboardPage.getProjectWithTestCases(projectName).click();
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
-        openProjectPage.getAllTestCasesButton().click();
+        openProjectPage.getAllTestCases.click();
         openProjectPage.getTestCase(testCaseName).click();
-        openProjectPage.getEditButton().click();
+        openProjectPage.editButton.click();
         AddTestCasesPage updateTestCase = new AddTestCasesPage(browsersService);
-        updateTestCase.getTitleInput().clear();
-        updateTestCase.getTitleInput().sendKeys(newTestCaseName);
-        updateTestCase.getPreconditions().sendKeys(preconditionsText);
-        updateTestCase.getSteps().sendKeys(stepText);
-        updateTestCase.getExpectedResult().sendKeys(expectedResultText);
-        updateTestCase.getAcceptCaseButton().click();
+        updateTestCase.title.clear();
+        updateTestCase.title.sendKeys(newTestCaseName);
+        updateTestCase.preconditions.sendKeys(preconditionsText);
+        updateTestCase.steps.sendKeys(stepText);
+        updateTestCase.expectedResult.sendKeys(expectedResultText);
+        updateTestCase.addTestCaseButton.click();
 
         return new OpenProjectPage(browsersService, false);
     }
@@ -62,13 +62,13 @@ public class AddTestCasesStep extends BaseStep {
         DashboardPage dashboardPage = loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
         dashboardPage.getProjectWithTestCases(projectName).click();
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService,false);
-        openProjectPage.getAllTestCasesButton().click();
+        openProjectPage.getAllTestCases.click();
         openProjectPage.getTestCase(testCaseName).click();
-        openProjectPage.getEditButton().click();
+        openProjectPage.editButton.click();
         AddTestCasesPage deleteTestCase = new AddTestCasesPage(browsersService);
-        deleteTestCase.getDeleteTestCaseButton().click();
+        deleteTestCase.deleteTestCaseButton.click();
         DeleteConfirm deleteConfirm = new DeleteConfirm(browsersService);
-        deleteConfirm.markAsDeleteButton().click();
+        deleteConfirm.markAsDelete.click();
 
         return new OpenProjectPage(browsersService,false);
     }

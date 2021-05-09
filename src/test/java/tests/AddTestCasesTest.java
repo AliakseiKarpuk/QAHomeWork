@@ -36,7 +36,7 @@ public class AddTestCasesTest extends BaseTest {
         updateTestCasesStep.updateTestCase(projectName, testCaseName, newTestCaseName, preconditionText, stepsText, expectedResultText);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
-        Assert.assertEquals(openProjectPage.getSuccessText().getText(),"Successfully updated the test case.");
+        Assert.assertEquals(openProjectPage.successText.getText(),"Successfully updated the test case.");
     }
 
     @Test(dataProvider = "Delete Test Case", dataProviderClass = AddTestCaseProvider.class, dependsOnMethods = "UpdateTestCase", description = "Удаление тест кейса")
@@ -48,6 +48,6 @@ public class AddTestCasesTest extends BaseTest {
         deleteTestCaseStep.deleteTestCase(projectName, testCaseName);
         OpenProjectPage openProjectPage = new OpenProjectPage(browsersService);
 
-        Assert.assertEquals(openProjectPage.getSuccessText().getText(),"Successfully flagged the test case as deleted.");
+        Assert.assertEquals(openProjectPage.successText.getText(),"Successfully flagged the test case as deleted.");
     }
 }

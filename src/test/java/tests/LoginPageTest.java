@@ -31,8 +31,8 @@ public class LoginPageTest extends BaseTest {
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("","");
 
-        Assert.assertTrue(loginPage.getEmailRequired().isDisplayed());
-        Assert.assertTrue(loginPage.getPswRequired().isDisplayed());
+        Assert.assertTrue(loginPage.emailRequired.isDisplayed());
+        Assert.assertTrue(loginPage.pswRequired.isDisplayed());
 
     }
 
@@ -43,7 +43,7 @@ public class LoginPageTest extends BaseTest {
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("","QqtRK9elseEfAk6ilYcJ");
 
-        Assert.assertTrue(loginPage.getEmailRequired().isDisplayed());
+        Assert.assertTrue(loginPage.emailRequired.isDisplayed());
     }
 
     @Test(description = "Логин с некоректными данными")
@@ -53,6 +53,6 @@ public class LoginPageTest extends BaseTest {
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("atrostyanko+0401@gmail.com","");
 
-        Assert.assertTrue(loginPage.getPswRequired().isDisplayed());
+        Assert.assertTrue(loginPage.pswRequired.isDisplayed());
     }
 }
