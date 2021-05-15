@@ -18,6 +18,9 @@ public class AddTestCasesTest extends BaseTest {
     @Test(dataProvider = "Add Test Case", dataProviderClass = AddTestCaseProvider.class, description = "Добавление тест кейса")
     @Description("Добавление трех тест кейсов с разныими значениями")
     @Story("Добавление Тест кейса")
+    @TmsLink("65")
+    @Link(name = "Test Link", url = "https://thumbs.dreamstime.com/z/funny-cartoon-bug-vector-illustration-cute-beetle-50577038.jpg")
+    @Issue("AQA-7107")
     public void AddTestCase(String projectName, String testCaseName, String preconditionText, String stepsText, String expectedResultText){
 
         AddTestCasesStep addTestCasesStep = new AddTestCasesStep(browsersService);
@@ -30,6 +33,9 @@ public class AddTestCasesTest extends BaseTest {
     @Test(dataProvider = "Update Test Case", dataProviderClass = AddTestCaseProvider.class, dependsOnMethods = "AddTestCase", description = "Обновление тест кейса")
     @Description("Обновление трех тест кейсов с разныими значениями")
     @Story("Обновление Тест кейса")
+    @TmsLink("65")
+    @Link(name = "Test Link", url = "https://thumbs.dreamstime.com/z/funny-cartoon-bug-vector-illustration-cute-beetle-50577038.jpg")
+    @Issue("AQA-7108")
     public void UpdateTestCase(String projectName, String testCaseName, String newTestCaseName, String preconditionText, String stepsText, String expectedResultText){
 
         AddTestCasesStep updateTestCasesStep = new AddTestCasesStep(browsersService);
@@ -42,6 +48,9 @@ public class AddTestCasesTest extends BaseTest {
     @Test(dataProvider = "Delete Test Case", dataProviderClass = AddTestCaseProvider.class, dependsOnMethods = "UpdateTestCase", description = "Удаление тест кейса")
     @Description("Удаление трех тест кейсов")
     @Story("Удаление Тест кейса")
+    @TmsLink("65")
+    @Link(name = "Test Link", url = "https://thumbs.dreamstime.com/z/funny-cartoon-bug-vector-illustration-cute-beetle-50577038.jpg")
+    @Issue("AQA-7109")
     public void DeleteTestCase(String projectName, String testCaseName){
 
         AddTestCasesStep deleteTestCaseStep = new AddTestCasesStep(browsersService);
