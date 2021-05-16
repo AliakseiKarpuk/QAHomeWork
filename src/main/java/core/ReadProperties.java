@@ -19,4 +19,8 @@ public class ReadProperties {
     public String getURL() { return properties.getProperty("url");}
     public String getBrowserName() { return properties.getProperty("browser");}
     public int getTimeout() { return Integer.parseInt(properties.getProperty("timeout"));}
+    public String getDbUrl(){ return properties.getProperty("db_url");}
+    public String getDbUser(){ return properties.getProperty("db_user");}
+    public String getDbPsw(){ return properties.getProperty("db_psw");}
+
 }
