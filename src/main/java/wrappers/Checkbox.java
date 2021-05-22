@@ -30,4 +30,11 @@ public class Checkbox {
             webElement.click();
         }
     }
+
+    public void selectCheckbox(boolean flag) {
+
+      if(flag){
+         webElement.click();
+      }
+    }
 }

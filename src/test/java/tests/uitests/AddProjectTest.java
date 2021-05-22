@@ -13,18 +13,18 @@ import testData.AddProjectProvider;
 public class AddProjectTest extends BaseTest {
 
 
-    @Test(dataProvider = "Add Project", dataProviderClass = AddProjectProvider.class, description = "Добавление проекта")
-    @Description("Добавление 3 проектов с разными именами и видами проекта")
-    public void AddProject(String name, String announcement, String value){
+//    @Test
+//    @Description("Добавление 3 проектов с разными именами и видами проекта")
+//    public void AddProject(String name, String announcement, String value){
+//
+//        ProjectSteps projectSteps = new ProjectSteps(browsersService);
+//        ProjectPage addProjectPage = projectSteps.AddProjectStep(name, announcement, value);
+//
+//       Assert.assertEquals(addProjectPage.getSuccessText.getText(),"Successfully added the new project.");
+//       Assert.assertTrue(addProjectPage.checkProjectList(name));
+//    }
 
-        ProjectSteps projectSteps = new ProjectSteps(browsersService);
-        ProjectPage addProjectPage = projectSteps.AddProjectStep(name, announcement, value);
-
-       Assert.assertEquals(addProjectPage.getSuccessText.getText(),"Successfully added the new project.");
-       Assert.assertTrue(addProjectPage.checkProjectList(name));
-    }
-
-    @Test(dependsOnMethods = "AddProject", dataProvider = "Update Project", dataProviderClass = AddProjectProvider.class, description = "Обновление проекта")
+    @Test
     public void UpdateProject(String projectName, String newProjectName){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);

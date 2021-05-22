@@ -20,4 +20,6 @@ public interface ProjectDao {
     void drop() throws SQLException;
 
     void create() throws SQLException;
+
+    Project getProject(String name) throws SQLException;
 }

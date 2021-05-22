@@ -3,36 +3,31 @@ package steps;
 import baseEntities.BaseStep;
 import core.BrowsersService;
 import io.qameta.allure.Step;
-import pages.*;
 import pages.dialogs.DeleteConfirm;
+
+import models.Project;
+import pages.AddProjectPage;
+import pages.EditProjectPage;
+import pages.ProjectPage;
 
 public class ProjectSteps extends BaseStep {
 
-    private LoginSteps  loginSteps;
-    private AddProjectPage addProjectPage;
-
     public ProjectSteps(BrowsersService browsersService) {
         super(browsersService);
-        loginSteps = new LoginSteps(browsersService);
     }
 
-    @Step("Добавление проекта с разынми параметрами {name} , {announcement} , {value}")
-    public ProjectPage AddProjectStep(String name, String announcement, String value) {
-       ProjectSteps projectPage = loginSteps
-                .loginWithCorrectCredential("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-       projectPage
-                .inputName(name)
-                .announcementInput(announcement)
-                .getSuiteMode(value)
-                .isShowAnnouncement()
-                .clickAddProjectbutton();
+    @Step("Добавление проекта с разыми значениями ")
+    public ProjectPage AddProject(Project project) {
 
-//        AddProjectPage addProjectPage = new AddProjectPage(browsersService,true);
-//        addProjectPage.nameInput.sendKeys(name);
-//        addProjectPage.announcementInput.sendKeys("12345");
-//        addProjectPage.isShowAnnouncement.click();
-//        addProjectPage.addProjectRadioButton.selectByValue("1");
-//        addProjectPage.addProjectButton.click();
+        LoginSteps loginSteps = new LoginSteps(browsersService);
+        loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
+
+        AddProjectPage addProjectPage = new AddProjectPage(browsersService,true);
+        addProjectPage.nameInput.sendKeys(project.getName());
+        addProjectPage.announcementInput.sendKeys(project.getAnnouncement());
+        addProjectPage.addProjectRadioButton.selectByValue(String.valueOf(project.getType().getValue()));
+        addProjectPage.isShowAnnouncementCheckbox.selectCheckbox(project.isShowAnnouncement());
+        addProjectPage.addProjectButton.click();
 
         return new ProjectPage(browsersService, false);
     }
@@ -74,45 +69,6 @@ public class ProjectSteps extends BaseStep {
 
         return new ProjectPage(browsersService,false);
 
-    }
-
-    private ProjectSteps inputName(String name){
-
-        addProjectPage.nameInput.sendKeys(name);
-
-       return this;
-    }
-
-    private ProjectSteps announcementInput(String announcement){
-
-        addProjectPage.announcementInput.sendKeys(announcement);
-
-        return this;
-    }
-
-    private ProjectSteps isShowAnnouncement(){
-        addProjectPage.isShowAnnouncement.click();
-        return this;
-    }
-
-    private ProjectSteps getSuiteMode(String value){
-        addProjectPage.addProjectRadioButton.selectByValue(value);
-        return this;
-    }
-
-    private ProjectSteps getSuiteMode(int number){
-        addProjectPage.addProjectRadioButton.selectByNumber(number);
-        return this;
-    }
-
-    private ProjectSteps getSuiteModeByName(String optionName){
-        addProjectPage.addProjectRadioButton.selectByOpiton(optionName);
-        return this;
-    }
-
-    private ProjectSteps clickAddProjectbutton(){
-        addProjectPage.addProjectButton.click();
-        return this;
     }
 
 }

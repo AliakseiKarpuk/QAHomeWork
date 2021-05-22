@@ -18,10 +18,11 @@ public class AddProjectPage extends BasePage {
     @FindBy(id = "announcement")
     public WebElement announcementInput;
     @FindBy(id = "show_announcement")
-    public WebElement isShowAnnouncement;
+    public Checkbox isShowAnnouncement;
     @FindBy(id = "accept")
     public WebElement addProjectButton;
 
+    private static final By isShowAnnouncementCheckboxBy = By.id("show_announcement");
     private static final By addProjectRadioButtonBy = By.name("suite_mode");
 
     public AddProjectPage(BrowsersService browsersService, boolean openPageByUrl) {
@@ -42,4 +43,5 @@ public class AddProjectPage extends BasePage {
         }
     }
     public RadioButton addProjectRadioButton = new RadioButton(driver, addProjectRadioButtonBy );
+    public Checkbox isShowAnnouncementCheckbox = new Checkbox(driver, isShowAnnouncementCheckboxBy);
 }

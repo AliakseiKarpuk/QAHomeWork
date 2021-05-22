@@ -131,4 +131,27 @@ public class ProjectDaoImpl implements ProjectDao{
         PreparedStatement ps = con.prepareStatement(query);
         ps.execute();
     }
+
+    @Override
+    public Project getProject(String name) throws SQLException {
+        String query = "select * from project where name = ?";
+
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1,name);
+        ResultSet rs = ps.executeQuery();
+
+        boolean check = false;
+        Project project = Project.builder().build();
+
+        while (rs.next()){
+            check = true;
+            project.setId(rs.getInt("id"));
+            project.setName(rs.getString("name"));
+            project.setAnnouncement(rs.getString("announcement"));
+            project.setShowAnnouncement(rs.getBoolean("show_announcement"));
+            project.setType(ProjectType.getEnumByValue(rs.getInt("type")));
+        }
+
+        return check ? project : null;
+    }
 }

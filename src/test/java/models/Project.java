@@ -11,7 +11,6 @@ import lombok.ToString;
 @Builder
 public class Project {
 
-
     int id;
     String name;
     String announcement;

@@ -21,7 +21,6 @@ public abstract class BaseTest {
         readProperties = new ReadProperties();
     }
 
-
     @BeforeMethod
     public void setupMethod() {
         browsersService = new BrowsersService();
