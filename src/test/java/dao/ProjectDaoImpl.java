@@ -23,7 +23,7 @@ public class ProjectDaoImpl implements ProjectDao{
         ps.setString(1, project.getName());
         ps.setString(2, project.getAnnouncement());
         ps.setBoolean(3, project.isShowAnnouncement());
-        ps.setInt(4,project.getType().getValue());
+        ps.setInt(4,project.getType());
 
         return ps.executeUpdate();
     }
@@ -45,7 +45,7 @@ public class ProjectDaoImpl implements ProjectDao{
             project.setName(rs.getString("name"));
             project.setAnnouncement(rs.getString("announcement"));
             project.setShowAnnouncement(rs.getBoolean("show_announcement"));
-            project.setType(ProjectType.getEnumByValue(rs.getInt("type")));
+            project.setType(rs.getInt("type"));
         }
 
        return check ? project : null;
@@ -71,7 +71,7 @@ public class ProjectDaoImpl implements ProjectDao{
         ps.setString(1, project.getName());
         ps.setString(2, project.getAnnouncement());
         ps.setBoolean(3, project.isShowAnnouncement());
-        ps.setInt(4,project.getType().getValue());
+        ps.setInt(4,project.getType());
         ps.setInt(5, project.getId());
 
         return ps.executeUpdate();
@@ -92,7 +92,7 @@ public class ProjectDaoImpl implements ProjectDao{
                     .name(rs.getString("name"))
                     .announcement(rs.getString("announcement"))
                     .isShowAnnouncement(rs.getBoolean("show_announcement"))
-                    .type(ProjectType.getEnumByValue(rs.getInt("type")))
+                    .type(rs.getInt("type"))
                     .build();
             projectList.add(project);
         }
@@ -149,7 +149,7 @@ public class ProjectDaoImpl implements ProjectDao{
             project.setName(rs.getString("name"));
             project.setAnnouncement(rs.getString("announcement"));
             project.setShowAnnouncement(rs.getBoolean("show_announcement"));
-            project.setType(ProjectType.getEnumByValue(rs.getInt("type")));
+            project.setType(rs.getInt("type"));
         }
 
         return check ? project : null;

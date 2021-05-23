@@ -25,7 +25,7 @@ public class ProjectSteps extends BaseStep {
         AddProjectPage addProjectPage = new AddProjectPage(browsersService,true);
         addProjectPage.nameInput.sendKeys(project.getName());
         addProjectPage.announcementInput.sendKeys(project.getAnnouncement());
-        addProjectPage.addProjectRadioButton.selectByValue(String.valueOf(project.getType().getValue()));
+        addProjectPage.addProjectRadioButton.selectByValue(String.valueOf(project.getType()));
         addProjectPage.isShowAnnouncementCheckbox.selectCheckbox(project.isShowAnnouncement());
         addProjectPage.addProjectButton.click();
 
