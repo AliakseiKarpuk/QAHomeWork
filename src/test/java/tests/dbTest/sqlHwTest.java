@@ -29,7 +29,7 @@ public class sqlHwTest extends BaseTest {
         Project ex = projectDao.getProject(project1.getName());
 
         ProjectHelper projectHelper = new ProjectHelper();
-        Project ac = projectHelper.getProject(ex.getId());
+        Project ac = projectHelper.getProject(85);
 
         Assert.assertEquals(ac, ex);
         }
