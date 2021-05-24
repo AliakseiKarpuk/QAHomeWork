@@ -12,10 +12,7 @@ import org.testng.annotations.Test;
 import steps.ProjectSteps;
 import testData.AddProjectProvider;
 
-
 public class sqlHwTest extends BaseTest {
-
-    private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     @SneakyThrows
     @Test(dataProvider = "Add Project", dataProviderClass = AddProjectProvider.class)
@@ -29,8 +26,8 @@ public class sqlHwTest extends BaseTest {
         Project ex = projectDao.getProject(project1.getName());
 
         ProjectHelper projectHelper = new ProjectHelper();
-        Project ac = projectHelper.getProject(85);
+        Project ac = projectHelper.getProject(projectHelper.getProjectId(project1));
 
         Assert.assertEquals(ac, ex);
-        }
     }
+}
