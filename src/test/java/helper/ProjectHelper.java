@@ -17,7 +17,7 @@ public class ProjectHelper {
     public ProjectHelper() {
     }
 
-        public Project getProject(int id) {
+    public Project getProject(int id) {
 
         String body = given()
                 .when()
@@ -31,21 +31,19 @@ public class ProjectHelper {
 
 
     @SneakyThrows
-    public int getProjectId(Project pr){
+    public int getProjectId() {
 
         int projectId = 0;
 
-        ProjectDaoImpl projectDao = new ProjectDaoImpl();
-
         String body = given()
                 .when()
-                .get("index.php?/api/v2/get_projects/" )
+                .get("index.php?/api/v2/get_projects/")
                 .body()
                 .asString();
 
         Project[] projectsList = gson.fromJson(body, Project[].class);
-        for (Project project : projectsList){
-            if(project.getName().equals(Arrays.stream(projectsList).findFirst().get().getName()));
+        for (Project project : projectsList) {
+            if (project.getName().equals(Arrays.stream(projectsList).findFirst().get().getName())) ;
             projectId = project.getId();
 
         }

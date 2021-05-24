@@ -23,11 +23,11 @@ public class sqlHwTest extends BaseTest {
 
 
         ProjectDaoImpl projectDao = new ProjectDaoImpl();
-        Project ex = projectDao.getProject(project1.getName());
+        Project expectedResult = projectDao.getProject(project1.getName());
 
         ProjectHelper projectHelper = new ProjectHelper();
-        Project ac = projectHelper.getProject(projectHelper.getProjectId(project1));
+        Project actualResult = projectHelper.getProject(projectHelper.getProjectId());
 
-        Assert.assertEquals(ac, ex);
+        Assert.assertEquals(actualResult, expectedResult);
     }
 }
