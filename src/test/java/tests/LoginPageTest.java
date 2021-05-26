@@ -16,9 +16,9 @@ public class LoginPageTest extends BaseTest {
 
     public Logger logger = LogManager.getLogger();
 
-    @Test(description = "Логин с коректными данными")
-    @Description("Логин с корректными паролем и емаил")
-    @Story("Логин с корректными данными")
+    @Test(description = "Login with correct credentials")
+    @Description("Login with correct email and password")
+    @Story("Login with correct credentials")
     public void LoginWithPswAndMail(){
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
@@ -27,9 +27,9 @@ public class LoginPageTest extends BaseTest {
         Assert.assertEquals(browsersService.getDriver().getTitle(), "All Projects - TestRail");
     }
 
-    @Test(description = "Логин с некоректными данными")
-    @Description("Логин без пароля и емаила")
-    @Story("Логин с некорректными данными")
+    @Test(description = "Login with incorrect credentials")
+    @Description("Login without email and password")
+    @Story("Login with incorrect credentials")
     public void LoginWithoutPasswordAndMail(){
 
         LoginSteps loginSteps = new LoginSteps(browsersService);
@@ -40,9 +40,9 @@ public class LoginPageTest extends BaseTest {
 
     }
 
-    @Test(description = "Логин с некоректными данными")
-    @Description("Логин с паролем и без емаила")
-    @Story("Логин с некорректными данными")
+    @Test(description = "Login with incorrect credentials")
+    @Description("Login with password and without email")
+    @Story("Login with incorrect credentials")
     public void LoginWithoutEmail(){
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("","QqtRK9elseEfAk6ilYcJ");
@@ -50,9 +50,9 @@ public class LoginPageTest extends BaseTest {
         Assert.assertTrue(loginPage.emailRequired.isDisplayed());
     }
 
-    @Test(description = "Логин с некоректными данными")
-    @Description("Логин с емаилом и без пароля")
-    @Story("Логин с некорректными данными")
+    @Test(description = "Login with incorrect credentials")
+    @Description("Login with email and without password")
+    @Story("Login with incorrect credentials")
     public void LoginWithoutPsw(){
         LoginSteps loginSteps = new LoginSteps(browsersService);
         LoginPage loginPage = loginSteps.loginWithIncorrectCredentials("atrostyanko+0401@gmail.com","");

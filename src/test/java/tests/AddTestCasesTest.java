@@ -21,8 +21,8 @@ public class AddTestCasesTest extends BaseTest {
     public Logger logger = LogManager.getLogger();
 
     @Test
-    @Description("Добавление трех тест кейсов с разныими значениями")
-    @Story("Добавление Тест кейса")
+    @Description("Adding three test cases with different values")
+    @Story("Adding test cases")
     public void AddTestCase(){
 
         TestCase testCase = TestCase.builder()
@@ -40,9 +40,9 @@ public class AddTestCasesTest extends BaseTest {
         Assert.assertTrue(openProjectPage.getTestCase(testCase.getTestCaseName()).isDisplayed());
     }
 
-    @Test(dependsOnMethods = "AddTestCase", description = "Обновление тест кейса")
-    @Description("Обновление трех тест кейсов с разныими значениями")
-    @Story("Обновление Тест кейса")
+    @Test(dependsOnMethods = "AddTestCase", description = "Updating test cases")
+    @Description("Updating three test cases with different values")
+    @Story("Updating test cases")
     public void UpdateTestCase(){
 
         TestCase testCase = TestCase.builder()
@@ -63,9 +63,9 @@ public class AddTestCasesTest extends BaseTest {
         Assert.assertEquals(openProjectPage.successText.getText(),"Successfully updated the test case.");
     }
 
-    @Test(dependsOnMethods = "UpdateTestCase", description = "Удаление тест кейса")
-    @Description("Удаление трех тест кейсов")
-    @Story("Удаление Тест кейса")
+    @Test(dependsOnMethods = "UpdateTestCase", description = "Deleting test cases")
+    @Description("Deleting three test cases")
+    @Story("Deleting test cases")
     public void DeleteTestCase(){
 
         TestCase testCase = TestCase.builder()

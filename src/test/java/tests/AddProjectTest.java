@@ -21,8 +21,8 @@ public class AddProjectTest extends BaseTest {
 
 
     @Test
-    @Description("Добавление трех проектов с разныими значениями")
-    @Story("Добавление Проекта")
+    @Description("Adding three projects with different values")
+    @Story("Adding a Project")
     public void AddProject(){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
@@ -40,9 +40,9 @@ public class AddProjectTest extends BaseTest {
         Assert.assertTrue(projectPage.checkProjectList(project.getName()));
     }
 
-    @Test
-    @Description("Обновление трех проектов с другими значениями")
-    @Story("Обновление Проекта")
+    @Test(dependsOnMethods = "AddProject")
+    @Description("Updating three projects with other values")
+    @Story("Updating proejcts")
     public void UpdateProject(){
 
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
@@ -62,9 +62,9 @@ public class AddProjectTest extends BaseTest {
 
     }
 
-    @Test
-    @Description("Удаление трех проектов")
-    @Story("Удаление Проекта")
+    @Test(dependsOnMethods = "UpdateProject")
+    @Description("Deleting three projects")
+    @Story("Deleting projects")
     public void DeleteProject(String projectName){
         ProjectSteps projectSteps = new ProjectSteps(browsersService);
         ProjectPage deleteProject = projectSteps.DeleteProject(projectName);
