@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<projects>
+    <project id = "96">
+        <name>Test Project AK</name>
+        <announcement>New announcemet</announcement>
+        <showAnnouncemet>true</showAnnouncemet>
+        <isCompleted>false</isCompleted>
+        <completedOn>null</completedOn>
+        <suiteMode>2</suiteMode>
+    </project>
+</projects>
