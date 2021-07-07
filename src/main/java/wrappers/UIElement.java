@@ -27,6 +27,7 @@ public class UIElement implements WebElement {
     }
 
     public UIElement(WebDriver webDriver, WebElement webElement) {
+
         this.webDriver = webDriver;
         this.actions = new Actions(webDriver);
         this.jsExecutor = (JavascriptExecutor) webDriver;
