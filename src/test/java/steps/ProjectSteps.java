@@ -18,10 +18,8 @@ public class ProjectSteps extends BaseStep {
 
     @Step("Добавление проекта с разыми значениями ")
     public ProjectPage AddProject(Project project) {
-
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-
         AddProjectPage addProjectPage = new AddProjectPage(browsersService,true);
         addProjectPage.nameInput.sendKeys(project.getName());
         addProjectPage.announcementInput.sendKeys(project.getAnnouncement());
