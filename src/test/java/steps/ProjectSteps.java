@@ -32,13 +32,10 @@ public class ProjectSteps extends BaseStep {
 
     @Step("Обновление проекта '{projectName}'")
     public ProjectPage UpdateProject(Project project) {
-
         LoginSteps loginSteps = new LoginSteps(browsersService);
         loginSteps.loginWithCorrectCredentials("atrostyanko+0401@gmail.com", "QqtRK9elseEfAk6ilYcJ");
-
         ProjectPage projectPage = new ProjectPage(browsersService,true);
         projectPage.selectProject(project.getName());
-
         EditProjectPage editProjectPage = new EditProjectPage(browsersService,false);
         editProjectPage.editName.clear();
         editProjectPage.editName.sendKeys(project.getNewName());
