@@ -29,7 +29,6 @@ public class AdavancedSeleniumTest extends BaseTest {
 
     @Test
     public void DynamicControlTest(){
-
         DynamiControlPage dynamiControlPage = new DynamiControlPage(browsersService, true);
         Actions actions = new Actions(browsersService.getDriver());
         actions
