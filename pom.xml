@@ -17,7 +17,7 @@
         <allure.version>2.13.9</allure.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <aspectj.version>1.9.5</aspectj.version>
+        <aspectj.version>1.9.5</aspectj.version>    
         <allureplugin.version>2.10.0</allureplugin.version>
     </properties>
 
