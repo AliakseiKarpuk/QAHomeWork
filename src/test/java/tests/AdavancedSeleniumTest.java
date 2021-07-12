@@ -43,16 +43,4 @@ public class AdavancedSeleniumTest extends BaseTest {
         Assert.assertEquals(dynamiControlPage.getMessage(), "It's enabled!");
         Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), true);
     }
-
-    @Test
-    public void FileUploadTest(){
-
-        FileUploadPage fileUploadPage = new FileUploadPage(browsersService, true);
-        fileUploadPage.getUploadButton().sendKeys("D:\\QAHomeWork\\src\\test\\java\\testData\\unnamed.png");
-        fileUploadPage.getStarUploadButton().click();
-
-        Assert.assertEquals(fileUploadPage.getFileName(), "unnamed.png");
-
-    }
-
 }
