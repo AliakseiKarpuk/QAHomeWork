@@ -44,33 +44,4 @@ public class AlertsIFrameTest extends BaseTest {
         Assert.assertEquals(iFramePage.alignCenterButton().getAttribute("aria-pressed"), "true");
 
     }
-
-    @Test //некорректны шаги воспроизведения в дз поэтому сделал так
-    public void iFrameOnlinerTest(){
-
-        iFrameOnlinerPage iFrameOnlinerPage = new iFrameOnlinerPage(browsersService, true);
-        iFrameOnlinerPage.fastSearchInput().sendKeys("тостер");
-        browsersService.getDriver().switchTo().frame(iFrameOnlinerPage.iFrameSearch());
-        iFrameOnlinerPage.firstProductName();
-        iFrameOnlinerPage.searchInFrame().clear();
-        iFrameOnlinerPage.searchInFrame().sendKeys(iFrameOnlinerPage.firstProductName());
-        iFrameOnlinerPage.selectFirstProduct().click();
-
-        Assert.assertEquals(iFrameOnlinerPage.confirm(), "Тостер Philips HD2581/00");
-    }
-
-    @Test //как реализовать проверку, что страница пролисталась до самого низа?
-    public void jsExecutorTest(){
-
-        iFrameOnlinerPage iFrameOnlinerPage = new iFrameOnlinerPage(browsersService, true);
-        JavascriptExecutor js = (JavascriptExecutor) browsersService.getDriver();
-        js.executeScript("window.scrollBy(0,10000)");
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
 }
