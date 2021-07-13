@@ -11,6 +11,8 @@
     <modules>
         <module>BaseEntities</module>
         <module>VariableEntities</module>
+        <module>isCharsUnique</module>
+        <module>ProductOfNumbers</module>
     </modules>
     <properties>
         <selenium.version>3.141.59</selenium.version>
