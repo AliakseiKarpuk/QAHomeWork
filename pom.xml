@@ -6,7 +6,12 @@
 
     <groupId>org.techmeskills</groupId>
     <artifactId>AUF</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>BaseEntities</module>
+        <module>VariableEntities</module>
+    </modules>
     <properties>
         <selenium.version>3.141.59</selenium.version>
         <webdrivermanager.version>4.2.2</webdrivermanager.version>
