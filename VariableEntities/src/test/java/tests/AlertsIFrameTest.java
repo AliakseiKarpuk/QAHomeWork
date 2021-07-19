@@ -40,8 +40,6 @@ public class AlertsIFrameTest extends BaseTest {
         iFramePage.inputText().sendKeys("some text in iframe");
         browsersService.getDriver().switchTo().parentFrame();
         iFramePage.alignCenterButton().click();
-
         Assert.assertEquals(iFramePage.alignCenterButton().getAttribute("aria-pressed"), "true");
-
     }
 }
