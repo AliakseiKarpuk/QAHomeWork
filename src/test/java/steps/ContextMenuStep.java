@@ -2,7 +2,6 @@ package steps;
 
 import baseEntities.BaseStep;
 import core.BrowsersService;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.interactions.Actions;
 import pages.ContextMenuPage;
 

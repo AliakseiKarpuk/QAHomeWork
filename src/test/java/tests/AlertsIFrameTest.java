@@ -2,12 +2,9 @@ package tests;
 
 import baseEntities.BaseTest;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AlertPage;
-import pages.iFrameOnlinerPage;
 import pages.iFramePage;
 
 public class AlertsIFrameTest extends BaseTest {

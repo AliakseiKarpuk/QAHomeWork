@@ -2,7 +2,6 @@ package baseEntities;
 
 import core.BrowsersService;
 import core.ReadProperties;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utils.Waits;
 
