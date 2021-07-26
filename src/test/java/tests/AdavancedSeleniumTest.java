@@ -39,47 +39,6 @@ public class AdavancedSeleniumTest extends BaseTest {
         actions.click(dynamiControlPage.getEnableButton()).build().perform();
         Assert.assertEquals(dynamiControlPage.getMessage(), "It's enabled!");
         Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), true);
-    } @Test
-    public void DynamicControlTest3(){
-        DynamiControlPage dynamiControlPage = new DynamiControlPage(browsersService, true);
-        Actions actions = new Actions(browsersService.getDriver());
-        actions
-                .click(dynamiControlPage.getCheckbox())
-                .click(dynamiControlPage.getRemoveButton()).build().perform();
-        Assert.assertEquals(dynamiControlPage.getMessage() , "It's gone!");
-        Assert.assertTrue(browsersService.getWaits().waitForInvisibility(By.id("checkbox")));
-
-        Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), false);
-        actions.click(dynamiControlPage.getEnableButton()).build().perform();
-        Assert.assertEquals(dynamiControlPage.getMessage(), "It's enabled!");
-        Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), true);
-    } @Test
-    public void DynamicControlTest2(){
-        DynamiControlPage dynamiControlPage = new DynamiControlPage(browsersService, true);
-        Actions actions = new Actions(browsersService.getDriver());
-        actions
-                .click(dynamiControlPage.getCheckbox())
-                .click(dynamiControlPage.getRemoveButton()).build().perform();
-        Assert.assertEquals(dynamiControlPage.getMessage() , "It's gone!");
-        Assert.assertTrue(browsersService.getWaits().waitForInvisibility(By.id("checkbox")));
-
-        Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), false);
-        actions.click(dynamiControlPage.getEnableButton()).build().perform();
-        Assert.assertEquals(dynamiControlPage.getMessage(), "It's enabled!");
-        Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), true);
-    } @Test
-    public void DynamicControlTest1(){
-        DynamiControlPage dynamiControlPage = new DynamiControlPage(browsersService, true);
-        Actions actions = new Actions(browsersService.getDriver());
-        actions
-                .click(dynamiControlPage.getCheckbox())
-                .click(dynamiControlPage.getRemoveButton()).build().perform();
-        Assert.assertEquals(dynamiControlPage.getMessage() , "It's gone!");
-        Assert.assertTrue(browsersService.getWaits().waitForInvisibility(By.id("checkbox")));
-
-        Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), false);
-        actions.click(dynamiControlPage.getEnableButton()).build().perform();
-        Assert.assertEquals(dynamiControlPage.getMessage(), "It's enabled!");
-        Assert.assertEquals(dynamiControlPage.getInput().isEnabled(), true);
     }
+
 }
